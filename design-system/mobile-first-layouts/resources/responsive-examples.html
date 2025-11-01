@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile-First Layout Examples</title>
+  <link rel="stylesheet" href="grid-system.css">
+  <link rel="stylesheet" href="layout-patterns.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: oklch(98% 0 0);
+      color: oklch(20% 0 0);
+      line-height: 1.6;
+    }
+
+    .demo-section {
+      padding: var(--space-8) var(--space-4);
+      border-bottom: 2px solid oklch(92% 0 0);
+    }
+
+    .demo-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: var(--space-2);
+      color: oklch(20% 0 0);
+    }
+
+    .demo-description {
+      font-size: 16px;
+      color: oklch(45% 0 0);
+      margin-bottom: var(--space-6);
+      max-width: 65ch;
+    }
+
+    .demo-example {
+      margin-bottom: var(--space-8);
+    }
+
+    .demo-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: oklch(30% 0 0);
+      margin-bottom: var(--space-3);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .demo-box {
+      background: oklch(96% 0 0);
+      border: 2px solid oklch(88% 0 0);
+      border-radius: 8px;
+      padding: var(--space-6);
+      text-align: center;
+      color: oklch(45% 0 0);
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .demo-card {
+      background: white;
+      border: 1px solid oklch(92% 0 0);
+      border-radius: 8px;
+      padding: var(--space-6);
+      box-shadow: 0 2px 4px oklch(0% 0 0 / 0.05);
+    }
+
+    .demo-card h3 {
+      font-size: 18px;
+      margin-bottom: var(--space-2);
+      color: oklch(20% 0 0);
+    }
+
+    .demo-card p {
+      font-size: 14px;
+      color: oklch(45% 0 0);
+    }
+
+    .viewport-indicator {
+      position: fixed;
+      bottom: var(--space-4);
+      right: var(--space-4);
+      background: oklch(20% 0 0);
+      color: white;
+      padding: var(--space-2) var(--space-4);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      z-index: 1000;
+    }
+
+    header {
+      background: oklch(20% 0 0);
+      color: white;
+      padding: var(--space-8) var(--space-4);
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: var(--space-2);
+    }
+
+    header p {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    .highlight-box {
+      background: oklch(65% 0.12 145);
+      color: white;
+      border: none;
+    }
+
+    .secondary-box {
+      background: oklch(55% 0.15 25);
+      color: white;
+      border: none;
+    }
+
+    .nav-item {
+      padding: var(--space-2) var(--space-4);
+      background: oklch(96% 0 0);
+      border-radius: 6px;
+      white-space: nowrap;
+      border: 1px solid oklch(92% 0 0);
+    }
+
+    code {
+      background: oklch(94% 0 0);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-family: 'Monaco', 'Courier New', monospace;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mobile-First Layouts</h1>
+    <p>Resize your browser to see responsive behavior</p>
+  </header>
+
+  <div class="viewport-indicator" id="viewport">
+    <span id="viewport-text">Calculating...</span>
+  </div>
+
+  <!-- 24-Column Grid System -->
+  <section class="demo-section">
+    <div class="container-xl">
+      <h2 class="demo-title">24-Column Grid System</h2>
+      <p class="demo-description">
+        Flexible grid divisible by 2, 3, 4, 6, 8, 12, and 24. Mobile-first: stack on small screens, expand on larger screens.
+      </p>
+
+      <div class="demo-example">
+        <div class="demo-label">Two Columns (12 + 12)</div>
+        <div class="grid">
+          <div class="col-24 col-sm-12">
+            <div class="demo-box">col-24 col-sm-12</div>
+          </div>
+          <div class="col-24 col-sm-12">
+            <div class="demo-box">col-24 col-sm-12</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-example">
+        <div class="demo-label">Three Columns (8 + 8 + 8)</div>
+        <div class="grid">
+          <div class="col-24 col-sm-12 col-md-8">
+            <div class="demo-box">col-24 col-sm-12 col-md-8</div>
+          </div>
+          <div class="col-24 col-sm-12 col-md-8">
+            <div class="demo-box">col-24 col-sm-12 col-md-8</div>
+          </div>
+          <div class="col-24 col-sm-24 col-md-8">
+            <div class="demo-box">col-24 col-sm-24 col-md-8</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-example">
+        <div class="demo-label">Asymmetric (16 + 8)</div>
+        <div class="grid">
+          <div class="col-24 col-md-16">
+            <div class="demo-box highlight-box">Main Content (16)</div>
+          </div>
+          <div class="col-24 col-md-8">
+            <div class="demo-box">Sidebar (8)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stack Layout -->
+  <section class="demo-section">
+    <div class="container-xl">
+      <h2 class="demo-title">Stack Layout</h2>
+      <p class="demo-description">
+        Vertical spacing with consistent gaps between elements.
+      </p>
+
+      <div class="demo-example">
+        <div class="demo-label">Stack (Vertical Spacing)</div>
+        <div class="stack-lg">
+          <div class="demo-card">
+            <h3>First Item</h3>
+            <p>Automatically spaced with consistent vertical gaps.</p>
+          </div>
+          <div class="demo-card">
+            <h3>Second Item</h3>
+            <p>No manual margin needed - uses lobotomized owl selector.</p>
+          </div>
+          <div class="demo-card">
+            <h3>Third Item</h3>
+            <p>Scales with spacing tokens for consistency.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cluster Layout -->
+  <section class="demo-section">
+    <div class="container-xl">
+      <h2 class="demo-title">Cluster Layout (No Flex-Wrap)</h2>
+      <p class="demo-description">
+        Horizontal grouping with NO wrapping. Items scroll horizontally on overflow.
+      </p>
+
+      <div class="demo-example">
+        <div class="demo-label">Cluster (Horizontal Scroll)</div>
+        <div class="cluster">
+          <div class="nav-item">Home</div>
+          <div class="nav-item">Products</div>
+          <div class="nav-item">Services</div>
+          <div class="nav-item">About Us</div>
+          <div class="nav-item">Contact</div>
+          <div class="nav-item">Blog</div>
+          <div class="nav-item">Careers</div>
+          <div class="nav-item">Support</div>
+          <div class="nav-item">Partners</div>
+        </div>
+        <p style="margin-top: var(--space-3); font-size: 13px; color: oklch(45% 0 0);">
+          ↔️ Scroll horizontally on mobile instead of wrapping
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sidebar Layout -->
+  <section class="demo-section">
+    <div class="container-xl">
+      <h2 class="demo-title">Sidebar Layout</h2>
+      <p class="demo-description">
+        Stack on mobile, sidebar on desktop. Common for documentation and dashboards.
+      </p>
+
+      <div class="demo-example">
+        <div class="sidebar-layout">
+          <aside>
+            <div class="demo-box">
+              Sidebar<br>
+              (250px on desktop)
+            </div>
+          </aside>
+          <main>
+            <div class="demo-box highlight-box">
+              Main Content<br>
+              (Flexible width)
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reel Layout -->
+  <section class="demo-section">
+    <div class="container-xl">
+      <h2 class="demo-title">Reel Layout</h2>
+      <p class="demo-description">
+        Horizontal scrolling carousel with fixed-width items. Perfect for cards, images, or product listings.
+      </p>
+
+      <div class="demo-example">
+        <div class="demo-label">Reel (Horizontal Scroll)</div>
+        <div class="reel reel-smooth">
+          <div class="demo-card" style="width: 280px;">
+            <h3>Card 1</h3>
+            <p>Fixed width cards that scroll horizontally.</p>
+          </div>
+          <div class="demo-card" style="width: 280px;">
+            <h3>Card 2</h3>
+            <p>Smooth scrolling with snap points.</p>
+          </div>
+          <div class="demo-card" style="width: 280px;">
+            <h3>Card 3</h3>
+            <p>Works great on mobile and desktop.</p>
+          </div>
+          <div class="demo-card" style="width: 280px;">
+            <h3>Card 4</h3>
+            <p>No wrapping - predictable layout.</p>
+          </div>
+          <div class="demo-card" style="width: 280px;">
+            <h3>Card 5</h3>
+            <p>Touch-friendly scrolling.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Card Grid -->
+  <section class="demo-section">
+    <div class="container-xl">
+      <h2 class="demo-title">Card Grid</h2>
+      <p class="demo-description">
+        Responsive grid that adjusts columns based on viewport: 1 column (mobile), 2 (tablet), 3 (desktop).
+      </p>
+
+      <div class="demo-example">
+        <div class="card-grid">
+          <div class="demo-card">
+            <h3>Feature 1</h3>
+            <p>Responsive grid adapts to screen size automatically.</p>
+          </div>
+          <div class="demo-card">
+            <h3>Feature 2</h3>
+            <p>Mobile: 1 column. Tablet: 2 columns. Desktop: 3 columns.</p>
+          </div>
+          <div class="demo-card">
+            <h3>Feature 3</h3>
+            <p>No manual breakpoint management needed.</p>
+          </div>
+          <div class="demo-card">
+            <h3>Feature 4</h3>
+            <p>Equal height cards with CSS Grid.</p>
+          </div>
+          <div class="demo-card">
+            <h3>Feature 5</h3>
+            <p>Consistent spacing with gap property.</p>
+          </div>
+          <div class="demo-card">
+            <h3>Feature 6</h3>
+            <p>Clean, predictable layout behavior.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Split Layout -->
+  <section class="demo-section">
+    <div class="container-xl">
+      <h2 class="demo-title">Split Layout</h2>
+      <p class="demo-description">
+        50/50 split or asymmetric ratios (70/30, 60/40). Stacks on mobile, splits on tablet+.
+      </p>
+
+      <div class="demo-example">
+        <div class="demo-label">50/50 Split</div>
+        <div class="split">
+          <div class="demo-box">Left Side (50%)</div>
+          <div class="demo-box">Right Side (50%)</div>
+        </div>
+      </div>
+
+      <div class="demo-example">
+        <div class="demo-label">70/30 Split</div>
+        <div class="split split-7030">
+          <div class="demo-box highlight-box">Primary (70%)</div>
+          <div class="demo-box">Secondary (30%)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Text Truncation -->
+  <section class="demo-section">
+    <div class="container-xl">
+      <h2 class="demo-title">Text Truncation</h2>
+      <p class="demo-description">
+        Instead of wrapping, truncate text with ellipsis for predictable layouts.
+      </p>
+
+      <div class="demo-example">
+        <div class="demo-label">Single Line Truncate</div>
+        <div class="demo-card">
+          <h3 class="truncate">This is a very long title that will be truncated with an ellipsis when it exceeds the container width</h3>
+          <p>Hover to see the overflow behavior.</p>
+        </div>
+      </div>
+
+      <div class="demo-example">
+        <div class="demo-label">Multi-Line Clamp (3 lines)</div>
+        <div class="demo-card">
+          <p class="line-clamp-3">
+            This is a longer paragraph that will be clamped to exactly three lines. Any content beyond three lines will be hidden with an ellipsis. This is useful for card layouts where you want consistent heights and predictable text overflow behavior. Mobile-first means thinking about constraints and handling them gracefully.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Navigation Pattern -->
+  <section class="demo-section">
+    <div class="container-xl">
+      <h2 class="demo-title">Navigation Patterns</h2>
+      <p class="demo-description">
+        Horizontal scroll on mobile, full-width on desktop. No wrapping ensures predictable layout.
+      </p>
+
+      <div class="demo-example">
+        <div class="demo-label">Mobile: Scroll | Desktop: Full Width</div>
+        <nav class="nav-scroll">
+          <a href="#" class="nav-item">Dashboard</a>
+          <a href="#" class="nav-item">Projects</a>
+          <a href="#" class="nav-item">Team</a>
+          <a href="#" class="nav-item">Calendar</a>
+          <a href="#" class="nav-item">Documents</a>
+          <a href="#" class="nav-item">Reports</a>
+          <a href="#" class="nav-item">Settings</a>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- Responsive Display -->
+  <section class="demo-section">
+    <div class="container-xl">
+      <h2 class="demo-title">Responsive Display</h2>
+      <p class="demo-description">
+        Show/hide elements at different breakpoints without JavaScript.
+      </p>
+
+      <div class="demo-example">
+        <div class="demo-box mobile-only" style="margin-bottom: var(--space-4);">
+          📱 Visible on Mobile Only
+        </div>
+        <div class="demo-box desktop-only">
+          💻 Visible on Desktop Only (1024px+)
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background: oklch(94% 0 0); padding: var(--space-8); text-align: center;">
+    <p style="color: oklch(45% 0 0); font-size: 14px;">
+      Resize your browser window to see responsive behavior • Mobile-First Design with 24-Column Grid
+    </p>
+  </footer>
+
+  <script>
+    // Viewport indicator
+    function updateViewport() {
+      const width = window.innerWidth;
+      const viewportText = document.getElementById('viewport-text');
+
+      let label = '';
+      if (width < 480) {
+        label = 'Mobile SM';
+      } else if (width < 640) {
+        label = 'Mobile LG';
+      } else if (width < 1024) {
+        label = 'Tablet';
+      } else if (width < 1440) {
+        label = 'Desktop';
+      } else {
+        label = 'Wide';
+      }
+
+      viewportText.textContent = `${label} (${width}px)`;
+    }
+
+    updateViewport();
+    window.addEventListener('resize', updateViewport);
+  </script>
+</body>
+</html>
