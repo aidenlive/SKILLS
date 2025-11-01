@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Common ARIA Patterns - Reference Guide</title>
+  <style>
+    :root {
+      --color-bg: oklch(98% 0 0);
+      --color-surface: oklch(96% 0 0);
+      --color-border: oklch(88% 0 0);
+      --color-text-primary: oklch(20% 0 0);
+      --color-text-secondary: oklch(45% 0 0);
+      --color-accent: oklch(30% 0 0);
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Inter, -apple-system, sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+      padding: var(--space-8);
+      line-height: 1.6;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: var(--space-4);
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-top: var(--space-8);
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-4);
+      border-bottom: 2px solid var(--color-border);
+    }
+
+    h3 {
+      font-size: 18px;
+      margin-top: var(--space-6);
+      margin-bottom: var(--space-4);
+    }
+
+    .pattern {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-6);
+      margin-bottom: var(--space-6);
+    }
+
+    pre {
+      background: oklch(94% 0 0);
+      padding: var(--space-4);
+      border-radius: 4px;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      background: oklch(94% 0 0);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .demo {
+      padding: var(--space-4);
+      border: 2px dashed var(--color-border);
+      border-radius: 4px;
+      margin-top: var(--space-4);
+    }
+
+    .demo-label {
+      font-weight: 600;
+      margin-bottom: var(--space-4);
+      color: var(--color-text-secondary);
+    }
+
+    /* Demo component styles */
+    .btn {
+      background: var(--color-accent);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+
+    .disclosure {
+      margin: var(--space-4) 0;
+    }
+
+    .disclosure-button {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      padding: var(--space-4);
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: inherit;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .disclosure-button:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+
+    .disclosure-icon {
+      transition: transform 200ms ease;
+    }
+
+    .disclosure-button[aria-expanded="true"] .disclosure-icon {
+      transform: rotate(90deg);
+    }
+
+    .disclosure-panel {
+      padding: var(--space-4);
+      border: 1px solid var(--color-border);
+      border-top: none;
+      background: oklch(99% 0 0);
+    }
+
+    .disclosure-panel[hidden] {
+      display: none;
+    }
+
+    .tabs {
+      margin: var(--space-4) 0;
+    }
+
+    .tablist {
+      display: flex;
+      gap: 4px;
+      border-bottom: 2px solid var(--color-border);
+    }
+
+    .tab {
+      background: transparent;
+      border: none;
+      padding: var(--space-4);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      font-family: inherit;
+    }
+
+    .tab:hover {
+      background: var(--color-surface);
+    }
+
+    .tab[aria-selected="true"] {
+      border-bottom-color: var(--color-accent);
+      font-weight: 600;
+    }
+
+    .tab:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+
+    .tabpanel {
+      padding: var(--space-4);
+      border: 1px solid var(--color-border);
+      border-top: none;
+    }
+
+    .tabpanel[hidden] {
+      display: none;
+    }
+
+    .alert {
+      padding: var(--space-4);
+      border-radius: 4px;
+      margin: var(--space-4) 0;
+    }
+
+    .alert-error {
+      background: oklch(95% 0.03 25);
+      color: oklch(35% 0.15 25);
+      border: 1px solid oklch(80% 0.10 25);
+    }
+
+    .alert-success {
+      background: oklch(95% 0.03 145);
+      color: oklch(30% 0.12 145);
+      border: 1px solid oklch(80% 0.10 145);
+    }
+  </style>
+</head>
+<body>
+  <h1>Common ARIA Patterns Reference</h1>
+  <p>Copy-paste ready examples of common ARIA patterns for accessible web components.</p>
+
+  <section>
+    <h2>1. Disclosure (Accordion/Collapsible)</h2>
+    <div class="pattern">
+      <h3>Pattern</h3>
+      <p>A widget that allows users to show/hide content.</p>
+
+      <pre><code>&lt;button
+  aria-expanded="false"
+  aria-controls="panel-1"
+&gt;
+  Show More
+&lt;/button&gt;
+
+&lt;div id="panel-1" hidden&gt;
+  Hidden content
+&lt;/div&gt;</code></pre>
+
+      <div class="demo">
+        <div class="demo-label">Live Demo:</div>
+        <div class="disclosure">
+          <button
+            class="disclosure-button"
+            aria-expanded="false"
+            aria-controls="panel-demo-1"
+            onclick="toggleDisclosure(this, 'panel-demo-1')"
+          >
+            <span class="disclosure-icon">▶</span>
+            Click to expand
+          </button>
+          <div id="panel-demo-1" class="disclosure-panel" hidden>
+            This content was hidden and is now visible!
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>2. Tabs</h2>
+    <div class="pattern">
+      <h3>Pattern</h3>
+      <p>A set of layered sections of content, only one visible at a time.</p>
+
+      <pre><code>&lt;div role="tablist" aria-label="Content sections"&gt;
+  &lt;button
+    role="tab"
+    aria-selected="true"
+    aria-controls="panel-1"
+    id="tab-1"
+  &gt;
+    Tab 1
+  &lt;/button&gt;
+  &lt;button
+    role="tab"
+    aria-selected="false"
+    aria-controls="panel-2"
+    id="tab-2"
+  &gt;
+    Tab 2
+  &lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div role="tabpanel" id="panel-1" aria-labelledby="tab-1"&gt;
+  Panel 1 content
+&lt;/div&gt;
+
+&lt;div role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden&gt;
+  Panel 2 content
+&lt;/div&gt;</code></pre>
+
+      <div class="demo">
+        <div class="demo-label">Live Demo:</div>
+        <div class="tabs">
+          <div class="tablist" role="tablist" aria-label="Demo tabs">
+            <button
+              class="tab"
+              role="tab"
+              aria-selected="true"
+              aria-controls="demo-panel-1"
+              id="demo-tab-1"
+              onclick="switchTab(this, 'demo-panel-1')"
+            >
+              Overview
+            </button>
+            <button
+              class="tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="demo-panel-2"
+              id="demo-tab-2"
+              onclick="switchTab(this, 'demo-panel-2')"
+            >
+              Details
+            </button>
+            <button
+              class="tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="demo-panel-3"
+              id="demo-tab-3"
+              onclick="switchTab(this, 'demo-panel-3')"
+            >
+              Settings
+            </button>
+          </div>
+
+          <div class="tabpanel" role="tabpanel" id="demo-panel-1" aria-labelledby="demo-tab-1">
+            Overview content goes here.
+          </div>
+          <div class="tabpanel" role="tabpanel" id="demo-panel-2" aria-labelledby="demo-tab-2" hidden>
+            Detailed information displayed here.
+          </div>
+          <div class="tabpanel" role="tabpanel" id="demo-panel-3" aria-labelledby="demo-tab-3" hidden>
+            Settings and configuration options.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Alert / Live Region</h2>
+    <div class="pattern">
+      <h3>Pattern</h3>
+      <p>Dynamically updating content that should be announced to screen readers.</p>
+
+      <pre><code>&lt;!-- Error alert (assertive) --&gt;
+&lt;div role="alert" aria-live="assertive"&gt;
+  Error: Please correct the form fields.
+&lt;/div&gt;
+
+&lt;!-- Status message (polite) --&gt;
+&lt;div role="status" aria-live="polite"&gt;
+  3 items added to cart
+&lt;/div&gt;
+
+&lt;!-- Loading state --&gt;
+&lt;div aria-live="polite" aria-busy="true"&gt;
+  Loading...
+&lt;/div&gt;</code></pre>
+
+      <div class="demo">
+        <div class="demo-label">Live Demo:</div>
+        <button class="btn" onclick="showAlert('error')">Show Error</button>
+        <button class="btn" onclick="showAlert('success')">Show Success</button>
+
+        <div id="alert-container" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>4. Dialog / Modal</h2>
+    <div class="pattern">
+      <h3>Pattern</h3>
+      <p>A modal dialog that requires user interaction.</p>
+
+      <pre><code>&lt;div
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="dialog-title"
+  aria-describedby="dialog-desc"
+&gt;
+  &lt;h2 id="dialog-title"&gt;Confirm Action&lt;/h2&gt;
+  &lt;p id="dialog-desc"&gt;
+    Are you sure you want to proceed?
+  &lt;/p&gt;
+  &lt;button&gt;Cancel&lt;/button&gt;
+  &lt;button&gt;Confirm&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+
+      <p><strong>Key requirements:</strong></p>
+      <ul>
+        <li>Focus trap (Tab cycles within modal)</li>
+        <li>Escape key closes modal</li>
+        <li>Focus returns to trigger element on close</li>
+        <li>Body scroll prevented when open</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>5. Landmark Roles</h2>
+    <div class="pattern">
+      <h3>Pattern</h3>
+      <p>Semantic regions that help screen reader users navigate.</p>
+
+      <pre><code>&lt;!-- Use semantic HTML when possible --&gt;
+&lt;header&gt;...&lt;/header&gt;  &lt;!-- role="banner" implicit --&gt;
+&lt;nav&gt;...&lt;/nav&gt;        &lt;!-- role="navigation" implicit --&gt;
+&lt;main&gt;...&lt;/main&gt;      &lt;!-- role="main" implicit --&gt;
+&lt;aside&gt;...&lt;/aside&gt;    &lt;!-- role="complementary" implicit --&gt;
+&lt;footer&gt;...&lt;/footer&gt;  &lt;!-- role="contentinfo" implicit --&gt;
+
+&lt;!-- Use ARIA roles when semantic HTML isn't available --&gt;
+&lt;div role="search"&gt;
+  &lt;input type="search" aria-label="Search site"&gt;
+&lt;/div&gt;
+
+&lt;!-- Multiple landmarks of same type need labels --&gt;
+&lt;nav aria-label="Main navigation"&gt;...&lt;/nav&gt;
+&lt;nav aria-label="Footer navigation"&gt;...&lt;/nav&gt;</code></pre>
+    </div>
+  </section>
+
+  <section>
+    <h2>6. Form Labels and Descriptions</h2>
+    <div class="pattern">
+      <h3>Pattern</h3>
+      <p>Properly labeled and described form fields.</p>
+
+      <pre><code>&lt;!-- Explicit label --&gt;
+&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input
+  type="email"
+  id="email"
+  aria-describedby="email-help"
+  required
+  aria-required="true"
+&gt;
+&lt;span id="email-help"&gt;
+  We'll never share your email
+&lt;/span&gt;
+
+&lt;!-- Error state --&gt;
+&lt;label for="password"&gt;Password&lt;/label&gt;
+&lt;input
+  type="password"
+  id="password"
+  aria-describedby="password-error"
+  aria-invalid="true"
+&gt;
+&lt;span id="password-error" role="alert"&gt;
+  Password must be at least 8 characters
+&lt;/span&gt;</code></pre>
+    </div>
+  </section>
+
+  <section>
+    <h2>7. Button States</h2>
+    <div class="pattern">
+      <h3>Pattern</h3>
+      <p>Buttons with clear states and purposes.</p>
+
+      <pre><code>&lt;!-- Toggle button --&gt;
+&lt;button aria-pressed="false"&gt;
+  Notifications
+&lt;/button&gt;
+
+&lt;!-- Icon-only button --&gt;
+&lt;button aria-label="Close dialog"&gt;
+  &lt;svg aria-hidden="true"&gt;...&lt;/svg&gt;
+&lt;/button&gt;
+
+&lt;!-- Disabled button --&gt;
+&lt;button disabled&gt;
+  Submit
+&lt;/button&gt;</code></pre>
+    </div>
+  </section>
+
+  <script>
+    // Disclosure toggle
+    function toggleDisclosure(button, panelId) {
+      const panel = document.getElementById(panelId);
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+      button.setAttribute('aria-expanded', !isExpanded);
+      panel.hidden = isExpanded;
+    }
+
+    // Tab switching
+    function switchTab(tab, panelId) {
+      const tablist = tab.closest('[role="tablist"]');
+      const tabs = tablist.querySelectorAll('[role="tab"]');
+      const panels = document.querySelectorAll('[role="tabpanel"]');
+
+      // Update tabs
+      tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
+      tab.setAttribute('aria-selected', 'true');
+
+      // Update panels
+      panels.forEach(p => p.hidden = true);
+      document.getElementById(panelId).hidden = false;
+    }
+
+    // Alert demo
+    function showAlert(type) {
+      const container = document.getElementById('alert-container');
+      const message = type === 'error'
+        ? 'Error: Please correct the form fields.'
+        : 'Success: Changes have been saved.';
+
+      container.innerHTML = `
+        <div class="alert alert-${type}" role="alert">
+          ${message}
+        </div>
+      `;
+
+      setTimeout(() => {
+        container.innerHTML = '';
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
