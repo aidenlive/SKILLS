@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Skills: Complete Overview 2025</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8/normalize.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web/src/regular/style.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            /* OKLCH Monochrome Palette */
+            --color-bg: oklch(98% 0 0);
+            --color-surface: oklch(96% 0 0);
+            --color-border: oklch(88% 0 0);
+            --color-text-primary: oklch(20% 0 0);
+            --color-text-secondary: oklch(45% 0 0);
+            --color-text-tertiary: oklch(60% 0 0);
+            --color-accent: oklch(30% 0 0);
+            
+            /* Spacing Scale (4px base) */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-6: 24px;
+            --space-8: 32px;
+            --space-12: 48px;
+            --space-16: 64px;
+            --space-24: 96px;
+            
+            /* Typography Scale */
+            --text-xs: 12px;
+            --text-sm: 14px;
+            --text-base: 16px;
+            --text-lg: 18px;
+            --text-xl: 24px;
+            --text-2xl: 32px;
+            --text-3xl: 40px;
+            
+            /* Layout */
+            --content-max: 840px;
+            --reading-max: 680px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-bg: oklch(15% 0 0);
+                --color-surface: oklch(18% 0 0);
+                --color-border: oklch(28% 0 0);
+                --color-text-primary: oklch(95% 0 0);
+                --color-text-secondary: oklch(70% 0 0);
+                --color-text-tertiary: oklch(55% 0 0);
+                --color-accent: oklch(85% 0 0);
+            }
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: var(--text-base);
+            line-height: 1.6;
+            color: var(--color-text-primary);
+            background: var(--color-bg);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: var(--content-max);
+            margin: 0 auto;
+            padding: var(--space-6) var(--space-4);
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: var(--space-12) var(--space-8);
+            }
+        }
+
+        /* Header */
+        header {
+            margin-bottom: var(--space-16);
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: var(--space-8);
+        }
+
+        h1 {
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-2);
+            line-height: 1.2;
+        }
+
+        .meta {
+            display: flex;
+            gap: var(--space-3);
+            flex-wrap: wrap;
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            margin-top: var(--space-4);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            padding: var(--space-6);
+            margin-bottom: var(--space-12);
+        }
+
+        .toc h2 {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-4);
+        }
+
+        .toc ol {
+            list-style: none;
+            counter-reset: toc-counter;
+        }
+
+        .toc li {
+            counter-increment: toc-counter;
+            margin-bottom: var(--space-2);
+        }
+
+        .toc li::before {
+            content: counter(toc-counter) ". ";
+            color: var(--color-text-tertiary);
+            font-weight: 500;
+            min-width: var(--space-8);
+            display: inline-block;
+        }
+
+        .toc a {
+            color: var(--color-text-primary);
+            text-decoration: none;
+            transition: color 0.15s ease;
+        }
+
+        .toc a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Typography */
+        h2 {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin: var(--space-12) 0 var(--space-6);
+            line-height: 1.3;
+        }
+
+        h3 {
+            font-size: var(--text-xl);
+            font-weight: 600;
+            margin: var(--space-8) 0 var(--space-4);
+            line-height: 1.4;
+        }
+
+        h4 {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            margin: var(--space-6) 0 var(--space-3);
+        }
+
+        p {
+            margin-bottom: var(--space-4);
+            max-width: var(--reading-max);
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: var(--space-4) 0;
+            padding-left: var(--space-6);
+        }
+
+        li {
+            margin-bottom: var(--space-2);
+        }
+
+        /* Code */
+        code {
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            background: var(--color-surface);
+            padding: var(--space-1) var(--space-2);
+            border: 1px solid var(--color-border);
+        }
+
+        pre {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            padding: var(--space-4);
+            overflow-x: auto;
+            margin: var(--space-4) 0;
+            font-size: var(--text-sm);
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin: var(--space-6) 0;
+            border: 1px solid var(--color-border);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: var(--text-sm);
+        }
+
+        thead {
+            background: var(--color-surface);
+        }
+
+        th {
+            text-align: left;
+            font-weight: 600;
+            padding: var(--space-3) var(--space-4);
+            border-bottom: 2px solid var(--color-border);
+            white-space: nowrap;
+        }
+
+        td {
+            padding: var(--space-3) var(--space-4);
+            border-bottom: 1px solid var(--color-border);
+            vertical-align: top;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            padding: var(--space-6);
+            margin: var(--space-6) 0;
+        }
+
+        .card-title {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            margin-bottom: var(--space-3);
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            gap: var(--space-4);
+            margin: var(--space-6) 0;
+        }
+
+        @media (min-width: 640px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Callouts */
+        .callout {
+            border-left: 3px solid var(--color-accent);
+            padding: var(--space-4);
+            margin: var(--space-6) 0;
+            background: var(--color-surface);
+        }
+
+        .callout-title {
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        /* Links */
+        a {
+            color: var(--color-accent);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: opacity 0.15s ease;
+        }
+
+        a:hover {
+            opacity: 0.7;
+        }
+
+        /* Section Dividers */
+        .section-divider {
+            height: 1px;
+            background: var(--color-border);
+            margin: var(--space-12) 0;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: var(--space-16);
+            padding-top: var(--space-8);
+            border-top: 1px solid var(--color-border);
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+        }
+
+        /* Utilities */
+        .text-secondary {
+            color: var(--color-text-secondary);
+        }
+
+        .text-tertiary {
+            color: var(--color-text-tertiary);
+        }
+
+        .font-mono {
+            font-family: 'Monaco', 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Claude Skills: Complete Overview 2025</h1>
+            <p class="text-secondary">A comprehensive guide to setup, usage, and best practices across platforms</p>
+            <div class="meta">
+                <span class="meta-item">
+                    <i class="ph ph-calendar"></i>
+                    October 2025
+                </span>
+                <span class="meta-item">
+                    <i class="ph ph-building"></i>
+                    Anthropic
+                </span>
+                <span class="meta-item">
+                    <i class="ph ph-clock"></i>
+                    15 min read
+                </span>
+            </div>
+        </header>
+
+        <nav class="toc">
+            <h2>Contents</h2>
+            <ol>
+                <li><a href="#executive-summary">Executive Summary</a></li>
+                <li><a href="#what-are-skills">What Are Claude Skills?</a></li>
+                <li><a href="#skill-vs-claude">SKILL.md vs CLAUDE.md</a></li>
+                <li><a href="#deployment-levels">Deployment Levels: Global vs Project</a></li>
+                <li><a href="#platform-comparison">Platform Comparison</a></li>
+                <li><a href="#setup-guide">Setup Guide by Platform</a></li>
+                <li><a href="#best-practices">Best Practices</a></li>
+                <li><a href="#security">Security Considerations</a></li>
+                <li><a href="#resources">Resources & References</a></li>
+            </ol>
+        </nav>
+
+        <main>
+            <section id="executive-summary">
+                <h2>Executive Summary</h2>
+                
+                <div class="callout">
+                    <div class="callout-title">
+                        <i class="ph ph-lightbulb"></i>
+                        Key Insight
+                    </div>
+                    <p>Claude Skills represent a paradigm shift from prompt engineering to capability packaging. Launched October 16, 2025, they enable organizations to transform Claude from a general-purpose assistant into a specialized agent with composable, reusable capabilities.</p>
+                </div>
+
+                <p>Claude Skills are self-contained capability packages that extend Claude's functionality across all Anthropic platforms. Unlike traditional prompts, Skills combine instructions, executable code, and resources in a progressive disclosure architecture that loads only what's needed, when it's needed.</p>
+
+                <h3>Core Advantages</h3>
+                <ul>
+                    <li><strong>Composable:</strong> Skills automatically stack together for complex workflows</li>
+                    <li><strong>Portable:</strong> Same format works across Claude.ai, Claude Code, and API</li>
+                    <li><strong>Efficient:</strong> Each skill uses only 30-50 tokens until loaded</li>
+                    <li><strong>Powerful:</strong> Can include executable code for deterministic operations</li>
+                    <li><strong>Discoverable:</strong> Claude autonomously decides when to invoke them</li>
+                </ul>
+
+                <h3>Impact Metrics</h3>
+                <p>According to Anthropic's internal benchmarks, teams using Skills reduce repetitive prompt engineering time by 73% compared to traditional approaches. This efficiency gain stems from the one-time packaging of workflows that execute 3+ times weekly.</p>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <section id="what-are-skills">
+                <h2>What Are Claude Skills?</h2>
+
+                <p>A Skill is a directory containing a <code>SKILL.md</code> file with organized instructions, scripts, and resources that Claude can discover and load dynamically to perform specific tasks. Think of Skills as onboarding materials for specialized capabilities.</p>
+
+                <h3>Anatomy of a Skill</h3>
+                <pre><code>my-skill/
+├── SKILL.md           # Required: Core instructions with YAML frontmatter
+├── resources/         # Optional: Supporting documentation
+│   ├── reference.md
+│   └── examples.md
+├── scripts/           # Optional: Executable helpers
+│   └── helper.py
+└── templates/         # Optional: Reusable templates
+    └── template.txt</code></pre>
+
+                <h3>SKILL.md Structure</h3>
+                <p>Every <code>SKILL.md</code> file must start with YAML frontmatter containing required metadata:</p>
+
+                <pre><code>---
+name: brand-guidelines
+description: Apply Acme Corp brand guidelines to presentations and documents, including official colors, fonts, and logo usage
+version: 1.0.0
+---
+
+# Brand Guidelines
+
+## Instructions
+Provide clear, step-by-step guidance for Claude.
+
+## Examples
+Show concrete examples of using this Skill.</code></pre>
+
+                <div class="card">
+                    <div class="card-title">Progressive Disclosure Architecture</div>
+                    <p>Skills use a two-level loading system:</p>
+                    <ol>
+                        <li><strong>Discovery Phase:</strong> Claude preloads only the <code>name</code> and <code>description</code> of every installed skill into its system prompt</li>
+                        <li><strong>Loading Phase:</strong> When matched, Claude reads the full <code>SKILL.md</code> and references additional files as needed</li>
+                    </ol>
+                    <p class="text-secondary">This architecture keeps Claude fast while maintaining access to specialized expertise.</p>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <section id="skill-vs-claude">
+                <h2>SKILL.md vs CLAUDE.md: Critical Distinctions</h2>
+
+                <p>Understanding the difference between these two file types is essential for effective Claude usage. They serve fundamentally different purposes and operate at different levels of the system.</p>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>SKILL.md</th>
+                                <th>CLAUDE.md</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Purpose</strong></td>
+                                <td>Packaged capability or specialized workflow</td>
+                                <td>Project-specific configuration and context</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Scope</strong></td>
+                                <td>Task-specific, reusable across projects</td>
+                                <td>Project-wide, defines environment</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Platform</strong></td>
+                                <td>All platforms (Web, Code, API)</td>
+                                <td>Claude Code only</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Loading</strong></td>
+                                <td>On-demand when relevant to task</td>
+                                <td>Always loaded at session start</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Discovery</strong></td>
+                                <td>Model-invoked (autonomous)</td>
+                                <td>Always active (mandatory)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Format</strong></td>
+                                <td>Requires YAML frontmatter</td>
+                                <td>Standard Markdown (no frontmatter)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Version Control</strong></td>
+                                <td>Optional (can be shared)</td>
+                                <td>Recommended (commit to repo)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hierarchy</strong></td>
+                                <td>Composable with other Skills</td>
+                                <td>Can be hierarchical (root + nested)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Instruction Priority</strong></td>
+                                <td>Loaded as context when invoked</td>
+                                <td>Treated as system rules (high priority)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Executable Code</strong></td>
+                                <td>Yes (scripts in skills/)</td>
+                                <td>No (documentation only)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>SKILL.md: Packaged Capabilities</h3>
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-title">When to Use</div>
+                        <ul>
+                            <li>Creating reusable workflows</li>
+                            <li>Building specialized expertise (PDF manipulation, Excel formulas)</li>
+                            <li>Enforcing brand guidelines</li>
+                            <li>Packaging domain knowledge</li>
+                            <li>Sharing capabilities across teams</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Key Characteristics</div>
+                        <ul>
+                            <li>Lives in skill directories</li>
+                            <li>Requires precise description for discovery</li>
+                            <li>Can include Python/JS scripts</li>
+                            <li>Portable across platforms</li>
+                            <li>Uses 30-50 tokens until loaded</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>CLAUDE.md: Project Memory</h3>
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-title">When to Use</div>
+                        <ul>
+                            <li>Defining project structure</li>
+                            <li>Documenting build commands</li>
+                            <li>Establishing coding standards</li>
+                            <li>Setting workflow procedures</li>
+                            <li>Declaring file boundaries</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Key Characteristics</div>
+                        <ul>
+                            <li>Lives in project root or subdirectories</li>
+                            <li>Always loaded at session start</li>
+                            <li>No executable code allowed</li>
+                            <li>Claude Code specific</li>
+                            <li>Higher instruction adherence</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Typical CLAUDE.md Structure</h3>
+                <pre><code># Tech Stack
+- Framework: Next.js 14
+- Language: TypeScript 5.2
+- Styling: Tailwind CSS 3.4
+
+# Project Structure
+- `src/app`: Next.js App Router pages
+- `src/components`: Reusable React components
+- `src/lib`: Core utilities and API clients
+
+# Commands
+- `npm run dev`: Start development server
+- `npm run build`: Build for production
+- `npm run test`: Run unit tests with Jest
+
+# Code Style
+- Use ES modules (import/export)
+- Prefer functional components with hooks
+- Follow Prettier configuration
+- Use strict TypeScript mode</code></pre>
+
+                <div class="callout">
+                    <div class="callout-title">
+                        <i class="ph ph-warning"></i>
+                        Critical Difference
+                    </div>
+                    <p>Claude Code treats <code>CLAUDE.md</code> content as <strong>immutable system rules</strong> with strict hierarchical priority over user prompts. In contrast, <code>SKILL.md</code> files are loaded as <strong>flexible context</strong> when relevant to the task. This distinction affects instruction adherence and behavior consistency.</p>
+                </div>
+
+                <h3>Interaction Pattern</h3>
+                <p>In practice, <code>CLAUDE.md</code> can reference Skills:</p>
+                <pre><code># Project Guide
+
+Use the brand-guidelines skill when creating presentations.
+Use the code-review skill before committing changes.</code></pre>
+                <p>This creates a layered instruction system where project rules invoke specialized capabilities.</p>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <section id="deployment-levels">
+                <h2>Deployment Levels: Global vs Project</h2>
+
+                <p>Skills can be deployed at different scopes depending on your needs. Understanding these levels is crucial for effective team collaboration and workflow organization.</p>
+
+                <h3>Claude Code: Three Deployment Levels</h3>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Level</th>
+                                <th>Location</th>
+                                <th>Scope</th>
+                                <th>Version Control</th>
+                                <th>Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Personal</strong></td>
+                                <td><code>~/.claude/skills/</code></td>
+                                <td>All your projects</td>
+                                <td>Not tracked</td>
+                                <td>Personal workflow preferences</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Project</strong></td>
+                                <td><code>.claude/skills/</code></td>
+                                <td>Current project only</td>
+                                <td>Committed to repo</td>
+                                <td>Project-specific capabilities</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Plugin</strong></td>
+                                <td><code>plugins/*/skills/</code></td>
+                                <td>When plugin installed</td>
+                                <td>Plugin repo</td>
+                                <td>Distributed capabilities</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Installation Methods</h3>
+
+                <h4>Personal Skills (Global)</h4>
+                <pre><code># Create personal skill
+mkdir -p ~/.claude/skills/my-skill
+echo '---
+name: my-skill
+description: My personal workflow helper
+---
+# Instructions...' > ~/.claude/skills/my-skill/SKILL.md
+
+# List personal skills
+ls ~/.claude/skills/</code></pre>
+
+                <h4>Project Skills (Version Controlled)</h4>
+                <pre><code># Create project skill
+mkdir -p .claude/skills/database-helper
+echo '---
+name: database-helper
+description: Helps with database operations
+---
+# Instructions...' > .claude/skills/database-helper/SKILL.md
+
+# Commit and push
+git add .claude/skills/
+git commit -m "Add database helper skill"
+git push
+
+# Team members automatically get it
+git pull  # Boom, they have the skill</code></pre>
+
+                <h4>Plugin Skills (Marketplace)</h4>
+                <pre><code># Install from marketplace
+/plugin marketplace add anthropics/skills
+
+# Install from local directory
+/plugin add /path/to/skill-directory
+
+# List all plugins
+claude plugin list</code></pre>
+
+                <h3>Claude.ai / Desktop: Individual Upload</h3>
+                <p>For web and desktop applications, Skills must be uploaded as ZIP files:</p>
+                
+                <pre><code># Package skill for upload
+zip -r my-skill.zip my-skill/
+
+# Upload via:
+# - Claude.ai: Settings → Capabilities → Upload Skill
+# - Claude Desktop: Settings → Skills → Upload</code></pre>
+
+                <div class="callout">
+                    <div class="callout-title">
+                        <i class="ph ph-info"></i>
+                        Sharing Limitation
+                    </div>
+                    <p>Custom Skills uploaded to Claude.ai or Claude Desktop are <strong>private to your individual account</strong>. Each team member must upload the skill separately. For organization-wide deployment, use the API or Claude Code with version control.</p>
+                </div>
+
+                <h3>API: Programmatic Management</h3>
+                <p>The API offers three deployment methods:</p>
+
+                <ol>
+                    <li><strong>Skill IDs:</strong> Reference Anthropic-provided skills (docx, pptx, pdf, xlsx)</li>
+                    <li><strong>ZIP Upload:</strong> Upload custom skills via <code>/v1/skills</code> endpoint</li>
+                    <li><strong>Inline Strings:</strong> Pass skill content directly in API requests</li>
+                </ol>
+
+                <pre><code># Example: Using skills in API
+import anthropic
+
+client = anthropic.Client(api_key="your-api-key")
+
+response = client.messages.create(
+    model="claude-sonnet-4-5-20250929",
+    messages=[{"role": "user", "content": "Create a Q3 report"}],
+    container={
+        "enabled": ["code-execution"],
+        "skills": [
+            {"type": "skill_id", "skill_id": "pptx", "version": "1.0"},
+            {"type": "skill_id", "skill_id": "custom-brand-123"}
+        ]
+    }
+)</code></pre>
+
+                <h3>Deployment Strategy by Use Case</h3>
+
+                <div class="grid">
+                    <div class="card">
+                        <div class="card-title">Individual Developer</div>
+                        <p><strong>Use:</strong> Personal skills in <code>~/.claude/skills/</code></p>
+                        <p class="text-secondary">Perfect for personal productivity hacks and workflow preferences that don't need team sharing.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Small Team</div>
+                        <p><strong>Use:</strong> Project skills in <code>.claude/skills/</code></p>
+                        <p class="text-secondary">Commit to Git for automatic distribution. Team gets updates through normal pull workflow.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Large Organization</div>
+                        <p><strong>Use:</strong> API + Skill Management endpoint</p>
+                        <p class="text-secondary">Centralized versioning, deployment control, and enterprise-wide distribution capabilities.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">Open Source Community</div>
+                        <p><strong>Use:</strong> Plugin marketplace</p>
+                        <p class="text-secondary">Distribute via anthropics/skills or custom plugin repos for maximum reach.</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <section id="platform-comparison">
+                <h2>Platform Comparison</h2>
+
+                <p>Claude Skills work across all Anthropic platforms, but implementation details vary. Understanding these differences helps you choose the right platform for your use case.</p>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Claude.ai (Web)</th>
+                                <th>Claude Desktop</th>
+                                <th>Claude Code</th>
+                                <th>Claude API</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Skill Format</strong></td>
+                                <td>ZIP upload</td>
+                                <td>ZIP upload</td>
+                                <td>Directory-based</td>
+                                <td>ZIP, strings, or IDs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Skill Discovery</strong></td>
+                                <td>Automatic</td>
+                                <td>Automatic</td>
+                                <td>Automatic</td>
+                                <td>Manual (container param)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Custom Skills</strong></td>
+                                <td>Yes (upload)</td>
+                                <td>Yes (upload)</td>
+                                <td>Yes (filesystem)</td>
+                                <td>Yes (upload or inline)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Anthropic Skills</strong></td>
+                                <td>Pre-installed</td>
+                                <td>Pre-installed</td>
+                                <td>Via plugins</td>
+                                <td>Via skill IDs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Version Control</strong></td>
+                                <td>Manual versioning</td>
+                                <td>Manual versioning</td>
+                                <td>Git-integrated</td>
+                                <td>API versioning</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sharing</strong></td>
+                                <td>Manual (each user)</td>
+                                <td>Manual (each user)</td>
+                                <td>Git (automatic)</td>
+                                <td>Programmatic</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CLAUDE.md</strong></td>
+                                <td>Not supported</td>
+                                <td>Not supported</td>
+                                <td>Fully supported</td>
+                                <td>Not applicable</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Code Execution</strong></td>
+                                <td>Required for skills</td>
+                                <td>Required for skills</td>
+                                <td>Built-in</td>
+                                <td>Beta feature flag</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Plan Requirement</strong></td>
+                                <td>Pro/Max/Team/Enterprise</td>
+                                <td>Pro/Max/Team/Enterprise</td>
+                                <td>Any with API access</td>
+                                <td>API subscription</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Filesystem Access</strong></td>
+                                <td>Sandboxed</td>
+                                <td>Sandboxed</td>
+                                <td>Full (with permissions)</td>
+                                <td>Sandboxed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Platform Selection Guide</h3>
+
+                <div class="card">
+                    <div class="card-title">Choose Claude.ai When:</div>
+                    <ul>
+                        <li>You need quick access without installation</li>
+                        <li>Skills are for individual use only</li>
+                        <li>Working with documents (Excel, PowerPoint, Word, PDF)</li>
+                        <li>No CLI/terminal access available</li>
+                        <li>You want the simplest onboarding experience</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Choose Claude Desktop When:</div>
+                    <ul>
+                        <li>You prefer native app experience</li>
+                        <li>Need offline capability (post-download)</li>
+                        <li>Want better system integration</li>
+                        <li>Similar use case to web but prefer desktop</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Choose Claude Code When:</div>
+                    <ul>
+                        <li>Building or modifying codebases</li>
+                        <li>Team collaboration is essential</li>
+                        <li>Version control integration needed</li>
+                        <li>You want Git-based skill distribution</li>
+                        <li>Need filesystem access and bash commands</li>
+                        <li>Want to use CLAUDE.md for project context</li>
+                        <li>Terminal-based workflows preferred</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Choose Claude API When:</div>
+                    <ul>
+                        <li>Building production applications</li>
+                        <li>Need programmatic control</li>
+                        <li>Enterprise deployment at scale</li>
+                        <li>Custom agent development</li>
+                        <li>Integration with existing systems</li>
+                        <li>Require version management and governance</li>
+                    </ul>
+                </div>
+
+                <h3>Key Platform Differences</h3>
+
+                <h4>Packaging Format</h4>
+                <ul>
+                    <li><strong>Web/Desktop:</strong> Both require ZIP files. Same packaging, different upload locations.</li>
+                    <li><strong>Claude Code:</strong> Uses directory-based skills. No ZIP needed—just create folders.</li>
+                    <li><strong>API:</strong> Flexible—accepts ZIP, raw strings, or skill IDs depending on use case.</li>
+                </ul>
+
+                <h4>Skill Persistence</h4>
+                <ul>
+                    <li><strong>Web/Desktop:</strong> Skills saved to your account. Available across all chats until deleted.</li>
+                    <li><strong>Claude Code:</strong> Skills persist in filesystem. Project skills tracked via Git.</li>
+                    <li><strong>API:</strong> Skills managed via versioned endpoints. Container persistence optional.</li>
+                </ul>
+
+                <h4>Execution Environment</h4>
+                <p>All platforms use sandboxed environments for skill execution, but with different levels of access:</p>
+                <ul>
+                    <li><strong>Web/Desktop:</strong> Fully sandboxed with no data persistence between sessions</li>
+                    <li><strong>Claude Code:</strong> Sandboxed but with permission-based filesystem access</li>
+                    <li><strong>API:</strong> Sandboxed container defined per request</li>
+                </ul>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <section id="setup-guide">
+                <h2>Setup Guide by Platform</h2>
+
+                <h3>Claude.ai (Web Application)</h3>
+
+                <h4>Prerequisites</h4>
+                <ul>
+                    <li>Pro, Max, Team, or Enterprise plan</li>
+                    <li>Code execution enabled (Settings → Features)</li>
+                    <li>For Team/Enterprise: Admin must enable Skills organization-wide</li>
+                </ul>
+
+                <h4>Creating Your First Skill</h4>
+                <ol>
+                    <li>Navigate to Settings → Capabilities → Skills</li>
+                    <li>Toggle "Enable Skills" to on</li>
+                    <li>Click "Create Skill" to launch the skill-creator wizard</li>
+                    <li>Answer interactive questions about your workflow</li>
+                    <li>Review the generated skill structure</li>
+                    <li>Test with example prompts</li>
+                    <li>Save and activate</li>
+                </ol>
+
+                <h4>Uploading Custom Skills</h4>
+                <pre><code># Create skill directory
+mkdir brand-guidelines
+cd brand-guidelines
+
+# Create SKILL.md
+cat > SKILL.md << 'EOF'
+---
+name: brand-guidelines
+description: Apply company brand guidelines to documents and presentations
+---
+
+# Brand Guidelines
+
+## Colors
+- Primary: #2C3E50
+- Secondary: #3498DB
+- Accent: #E74C3C
+
+## Typography
+- Headers: Helvetica Bold
+- Body: Helvetica Regular
+
+## Logo Usage
+Always maintain 0.5" clearspace around logo
+EOF
+
+# Package for upload
+cd ..
+zip -r brand-guidelines.zip brand-guidelines/
+
+# Upload via web interface:
+# Settings → Capabilities → Upload Custom Skill</code></pre>
+
+                <h3>Claude Code (CLI)</h3>
+
+                <h4>Installation</h4>
+                <pre><code># Install Claude Code (requires Node.js 18+)
+npm install -g @anthropic-ai/claude-code
+
+# Verify installation
+claude --version
+
+# Authenticate
+claude
+# Follow authentication prompts</code></pre>
+
+                <h4>Initialize Project</h4>
+                <pre><code># Navigate to your project
+cd your-project
+
+# Initialize Claude Code
+claude
+
+# Generate CLAUDE.md
+/init
+
+# This creates:
+# - CLAUDE.md (project configuration)
+# - .claude/ directory (for commands and skills)</code></pre>
+
+                <h4>Adding Skills</h4>
+                <pre><code># Personal skill (available everywhere)
+mkdir -p ~/.claude/skills/git-workflow
+cat > ~/.claude/skills/git-workflow/SKILL.md << 'EOF'
+---
+name: git-workflow
+description: Standardized Git commit and branching workflow
+---
+
+# Git Workflow
+
+## Commit Message Format
+type(scope): description
+
+Types: feat, fix, docs, style, refactor, test, chore
+
+## Branch Naming
+- feature/description
+- bugfix/issue-number
+- hotfix/description
+EOF
+
+# Project skill (team-shared)
+mkdir -p .claude/skills/api-docs
+cat > .claude/skills/api-docs/SKILL.md << 'EOF'
+---
+name: api-docs
+description: Generate API documentation following our standards
+---
+
+# API Documentation Standards
+
+Follow OpenAPI 3.0 specification
+Include examples for all endpoints
+Document error responses
+EOF
+
+# Commit to share with team
+git add .claude/
+git commit -m "Add API docs skill"</code></pre>
+
+                <h4>Custom Commands</h4>
+                <pre><code># Create custom slash command
+mkdir -p .claude/commands
+cat > .claude/commands/review.md << 'EOF'
+Perform a comprehensive code review:
+
+1. Check TypeScript and React conventions
+2. Verify error handling and loading states
+3. Ensure accessibility standards
+4. Review test coverage
+5. Check for security vulnerabilities
+6. Validate performance implications
+7. Confirm documentation is updated
+
+Use established code quality checklist.
+EOF
+
+# Restart Claude to load command
+# Use with: /project:review</code></pre>
+
+                <h3>Claude API</h3>
+
+                <h4>Setup</h4>
+                <pre><code># Install SDK
+pip install anthropic --break-system-packages
+
+# Set API key
+export ANTHROPIC_API_KEY='your-api-key'</code></pre>
+
+                <h4>Using Pre-built Skills</h4>
+                <pre><code>import anthropic
+
+client = anthropic.Anthropic()
+
+# Use Anthropic's PowerPoint skill
+response = client.messages.create(
+    model="claude-sonnet-4-5-20250929",
+    max_tokens=4096,
+    messages=[
+        {
+            "role": "user",
+            "content": "Create a 5-slide presentation about Q3 results"
+        }
+    ],
+    container={
+        "enabled": ["code-execution"],
+        "skills": [
+            {
+                "type": "skill_id",
+                "skill_id": "pptx",
+                "version": "1.0"
+            }
+        ]
+    }
+)
+
+# Extract file_id for download
+for block in response.content:
+    if hasattr(block, 'file_id'):
+        print(f"File created: {block.file_id}")</code></pre>
+
+                <h4>Uploading Custom Skills</h4>
+                <pre><code>import anthropic
+import zipfile
+import os
+
+client = anthropic.Anthropic()
+
+# Create skill ZIP
+def create_skill_zip():
+    os.makedirs('temp-skill', exist_ok=True)
+    
+    # Write SKILL.md
+    with open('temp-skill/SKILL.md', 'w') as f:
+        f.write('''---
+name: data-validator
+description: Validate CSV data against business rules
+---
+
+# Data Validation Rules
+
+## Required Fields
+- customer_id
+- transaction_date
+- amount
+
+## Validation Logic
+1. Check for duplicate customer_ids
+2. Validate date format (YYYY-MM-DD)
+3. Ensure amount is positive
+4. Flag outliers (>3 std dev)
+''')
+    
+    # Create ZIP
+    with zipfile.ZipFile('skill.zip', 'w') as zf:
+        zf.write('temp-skill/SKILL.md', 'SKILL.md')
+    
+    return 'skill.zip'
+
+# Upload skill
+skill_zip = create_skill_zip()
+with open(skill_zip, 'rb') as f:
+    skill_response = client.skills.create(
+        name="data-validator",
+        description="Validate CSV data against business rules",
+        file=f
+    )
+
+skill_id = skill_response.id
+print(f"Skill uploaded: {skill_id}")
+
+# Use the skill
+response = client.messages.create(
+    model="claude-sonnet-4-5-20250929",
+    max_tokens=4096,
+    messages=[
+        {
+            "role": "user",
+            "content": "Validate this customer data: [CSV content]"
+        }
+    ],
+    container={
+        "enabled": ["code-execution"],
+        "skills": [
+            {
+                "type": "skill_id",
+                "skill_id": skill_id
+            }
+        ]
+    }
+)</code></pre>
+
+                <h4>Managing Skill Versions</h4>
+                <pre><code># List all skills
+skills = client.skills.list()
+
+# Get specific skill
+skill = client.skills.retrieve(skill_id="skill_abc123")
+
+# Update skill (creates new version)
+with open('updated-skill.zip', 'rb') as f:
+    updated = client.skills.versions.create(
+        skill_id="skill_abc123",
+        file=f
+    )
+
+# Delete skill
+client.skills.delete(skill_id="skill_abc123")</code></pre>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <section id="best-practices">
+                <h2>Best Practices</h2>
+
+                <h3>Writing Effective SKILL.md Files</h3>
+
+                <h4>Description is Critical</h4>
+                <p>The <code>description</code> field determines when Claude invokes your skill. Make it specific and include key terms users would mention.</p>
+
+                <div class="grid_">
+                    <div>
+                        <strong class="text-secondary">❌ Too Generic</strong>
+                        <pre><code>description: Helps with spreadsheets</code></pre>
+                    </div>
+                    <div>
+                        <strong style="color: oklch(45% 0.15 145);">✓ Specific</strong>
+                        <pre><code>description: Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files or when user mentions PDFs, forms, or document extraction.</code></pre>
+                    </div>
+                </div>
+
+                <h4>Keep Instructions Clear and Concise</h4>
+                <ul>
+                    <li>Use short, declarative bullet points</li>
+                    <li>Avoid long narrative paragraphs</li>
+                    <li>Front-load the most important information</li>
+                    <li>Use examples to clarify expected behavior</li>
+                </ul>
+
+                <h4>Structure for Scale</h4>
+                <p>When <code>SKILL.md</code> becomes unwieldy, split content into separate files:</p>
+                <pre><code>my-skill/
+├── SKILL.md                # Core instructions
+├── resources/
+│   ├── detailed-guide.md   # In-depth documentation
+│   ├── examples.md         # Usage examples
+│   └── reference.md        # API reference
+└── scripts/
+    └── helper.py           # Executable tools</code></pre>
+
+                <p>Reference them in <code>SKILL.md</code>:</p>
+                <pre><code>## Instructions
+For detailed formatting rules, see resources/detailed-guide.md
+For examples, see resources/examples.md</code></pre>
+
+                <h4>Code vs. Documentation</h4>
+                <p>Decide whether code should be executable or serve as reference:</p>
+                <ul>
+                    <li><strong>Executable:</strong> Use for deterministic operations (sorting, parsing, formatting)</li>
+                    <li><strong>Reference:</strong> Use when Claude should understand patterns but generate code</li>
+                </ul>
+
+                <h3>Testing Skills</h3>
+
+                <h4>Test Prompts</h4>
+                <p>After creating a skill, test with varied prompts that match your description:</p>
+                <pre><code># If description mentions "PDF files"
+"Can you help me extract text from this PDF?"
+"Fill out this PDF form with the following data..."
+"Merge these three PDF documents"</code></pre>
+
+                <h4>Troubleshooting Non-Invocation</h4>
+                <p>If Claude doesn't use your skill:</p>
+                <ol>
+                    <li><strong>Check description specificity:</strong> Is it vague or missing key terms?</li>
+                    <li><strong>Validate YAML:</strong> Run <code>cat SKILL.md | head -n 15</code> to check frontmatter</li>
+                    <li><strong>Verify location:</strong> Is the skill in the correct directory?</li>
+                    <li><strong>Be explicit:</strong> Try "Use the [skill-name] skill to..."</li>
+                </ol>
+
+                <h3>Version Management</h3>
+
+                <h4>Semantic Versioning</h4>
+                <pre><code>---
+name: my-skill
+version: 2.1.0
+---
+
+# My Skill
+
+## Version History
+- v2.1.0 (2025-10-30): Added error handling for edge cases
+- v2.0.0 (2025-10-15): Breaking changes to API
+- v1.1.0 (2025-09-20): Added new export formats
+- v1.0.0 (2025-09-01): Initial release</code></pre>
+
+                <h4>API Version Pinning</h4>
+                <pre><code># Pin to specific version in production
+container={
+    "skills": [
+        {
+            "type": "skill_id",
+            "skill_id": "custom-skill-123",
+            "version": "2.0.0"  # Pin to stable version
+        }
+    ]
+}</code></pre>
+
+                <h3>Team Collaboration</h3>
+
+                <h4>Git Workflow for Skills</h4>
+                <pre><code># Feature branch for skill development
+git checkout -b feature/new-skill
+mkdir -p .claude/skills/new-skill
+# ... create skill ...
+git add .claude/skills/new-skill
+git commit -m "Add new-skill for API documentation"
+git push origin feature/new-skill
+# Create PR for review
+
+# Team members update
+git pull origin main
+# Skills automatically available</code></pre>
+
+                <h4>Skill Documentation</h4>
+                <p>Include a README for each project skill:</p>
+                <pre><code>.claude/skills/api-docs/
+├── SKILL.md
+└── README.md           # Human-readable docs</code></pre>
+
+                <h3>Performance Optimization</h3>
+
+                <h4>Context Efficiency</h4>
+                <ul>
+                    <li>Keep <code>SKILL.md</code> descriptions under 200 characters</li>
+                    <li>Split large skills into focused, composable skills</li>
+                    <li>Use progressive disclosure—reference files rather than inlining</li>
+                    <li>Remove redundant information</li>
+                </ul>
+
+                <h4>Execution Efficiency</h4>
+                <ul>
+                    <li>Use code for operations that are expensive in tokens (sorting, math)</li>
+                    <li>Cache frequently-used data in skill resources</li>
+                    <li>Avoid network calls in skill scripts when possible</li>
+                </ul>
+
+                <h3>CLAUDE.md Best Practices</h3>
+
+                <h4>Minimal and Focused</h4>
+                <pre><code># ❌ Too verbose
+This project is a web application built using Next.js 14, which is 
+a React framework. We use TypeScript for type safety, which helps 
+prevent bugs and improves developer experience...
+
+# ✓ Concise
+# Tech Stack
+- Next.js 14
+- TypeScript 5.2
+- Tailwind CSS 3.4</code></pre>
+
+                <h4>Hierarchical Structure</h4>
+                <p>Use nested <code>CLAUDE.md</code> files for different scopes:</p>
+                <pre><code>project-root/
+├── CLAUDE.md           # Project-wide rules
+├── frontend/
+│   └── CLAUDE.md       # Frontend-specific rules
+└── backend/
+    └── CLAUDE.md       # Backend-specific rules</code></pre>
+
+                <h4>Dynamic Updates</h4>
+                <p>Use the <code>#</code> shortcut during sessions to update <code>CLAUDE.md</code>:</p>
+                <pre><code># During Claude Code session
+User: # Always run tests before committing
+Claude: I've added that to your CLAUDE.md file.</code></pre>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <section id="security">
+                <h2>Security Considerations</h2>
+
+                <div class="callout">
+                    <div class="callout-title">
+                        <i class="ph ph-shield-warning"></i>
+                        Critical Security Warning
+                    </div>
+                    <p>Skills can execute arbitrary code in Claude's environment. <strong>Only install Skills from trusted sources.</strong> Malicious Skills can exfiltrate data, manipulate outputs, or compromise your workflow.</p>
+                </div>
+
+                <h3>Primary Risks</h3>
+
+                <h4>1. Prompt Injection</h4>
+                <p>Skills can be manipulated to execute unintended actions through carefully crafted prompts that override skill instructions.</p>
+                <p><strong>Mitigation:</strong></p>
+                <ul>
+                    <li>Review skill instructions for injection vulnerabilities</li>
+                    <li>Use strict input validation in skill scripts</li>
+                    <li>Limit skill permissions and scope</li>
+                </ul>
+
+                <h4>2. Data Exfiltration</h4>
+                <p>Malicious skills can leak sensitive data through network calls, encoded outputs, or logging mechanisms.</p>
+                <p><strong>Mitigation:</strong></p>
+                <ul>
+                    <li>Audit network calls in skill scripts</li>
+                    <li>Review third-party package dependencies</li>
+                    <li>Use network-restricted environments when possible</li>
+                    <li>Monitor skill outputs for suspicious patterns</li>
+                </ul>
+
+                <h4>3. Malicious Dependencies</h4>
+                <p>Skills may include or install third-party packages containing malicious code.</p>
+                <p><strong>Mitigation:</strong></p>
+                <ul>
+                    <li>Review <code>requirements.txt</code> or <code>package.json</code> files</li>
+                    <li>Pin dependency versions</li>
+                    <li>Use vulnerability scanning tools</li>
+                    <li>Prefer skills with minimal dependencies</li>
+                </ul>
+
+                <h3>Execution Environment</h3>
+
+                <h4>Sandboxing</h4>
+                <p>All platforms run skills in sandboxed environments:</p>
+                <ul>
+                    <li><strong>Claude.ai / Desktop:</strong> Fully isolated container with no persistence</li>
+                    <li><strong>Claude Code:</strong> Sandboxed with permission-based filesystem access</li>
+                    <li><strong>API:</strong> Containerized execution with no cross-request persistence</li>
+                </ul>
+
+                <h4>No Data Persistence</h4>
+                <p>Skills operate in ephemeral environments with no data retention between sessions. This limits the impact of malicious code but also means skills can't maintain state.</p>
+
+                <h3>Anthropic's Security Mitigations</h3>
+                <ul>
+                    <li>Sandboxed execution environments</li>
+                    <li>Network access restrictions (limited domains)</li>
+                    <li>Resource usage limits (CPU, memory, time)</li>
+                    <li>File system access controls</li>
+                    <li>Output filtering and validation</li>
+                </ul>
+
+                <h3>Security Checklist for Custom Skills</h3>
+
+                <div class="card">
+                    <div class="card-title">Before Installing a Skill</div>
+                    <ul>
+                        <li>☐ Verify the source (official Anthropic, trusted org, or community?)</li>
+                        <li>☐ Read the <code>SKILL.md</code> file completely</li>
+                        <li>☐ Review all included scripts for suspicious code</li>
+                        <li>☐ Check for network calls or external API usage</li>
+                        <li>☐ Inspect third-party dependencies</li>
+                        <li>☐ Look for file operations beyond expected scope</li>
+                        <li>☐ Verify no credential requests or token handling</li>
+                        <li>☐ Test in isolated environment first</li>
+                    </ul>
+                </div>
+
+                <h3>Enterprise Security</h3>
+
+                <h4>Governance Framework</h4>
+                <ul>
+                    <li><strong>Approval Process:</strong> Require security review before deploying new skills</li>
+                    <li><strong>Curated Library:</strong> Maintain approved skill catalog</li>
+                    <li><strong>Version Control:</strong> Pin skill versions in production</li>
+                    <li><strong>Audit Logging:</strong> Track skill usage and invocations</li>
+                    <li><strong>Access Control:</strong> Limit who can create/upload skills</li>
+                </ul>
+
+                <h4>API Security</h4>
+                <pre><code># Use environment variables for sensitive data
+import os
+
+api_key = os.environ.get('API_KEY')  # Never hardcode
+
+# Validate inputs
+def validate_input(data):
+    # Implement strict validation
+    pass
+
+# Use versioned, approved skills only
+approved_skills = {
+    "docx": {"version": "1.0.0"},
+    "internal-validator": {"version": "2.1.0"}
+}
+
+# Network restrictions
+# Limit skill execution to approved domains
+# Monitor outbound connections</code></pre>
+
+                <h3>Red Flags in Skills</h3>
+                <p>Be wary of skills that:</p>
+                <ul>
+                    <li>Request credentials or API keys</li>
+                    <li>Make network calls to unknown domains</li>
+                    <li>Access filesystem paths outside expected scope</li>
+                    <li>Use obfuscated or encoded code</li>
+                    <li>Install uncommon or unverified packages</li>
+                    <li>Have vague or misleading descriptions</li>
+                    <li>Come from untrusted or anonymous sources</li>
+                </ul>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <section id="resources">
+                <h2>Resources & References</h2>
+
+                <h3>Official Documentation</h3>
+                <ul>
+                    <li><a href="https://www.anthropic.com/news/skills">Claude Skills: Customize AI for your workflows</a> (Anthropic, Oct 2025)</li>
+                    <li><a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills">Equipping agents for the real world with Agent Skills</a> (Engineering Blog)</li>
+                    <li><a href="https://docs.claude.com/en/docs/claude-code/skills">Agent Skills - Claude Code Documentation</a></li>
+                    <li><a href="https://docs.claude.com/en/api/skills-guide">Using Agent Skills with the API</a></li>
+                    <li><a href="https://support.claude.com/en/articles/12512180-using-skills-in-claude">Using Skills in Claude</a> (Help Center)</li>
+                    <li><a href="https://support.claude.com/en/articles/12512198-how-to-create-custom-skills">How to create custom Skills</a> (Help Center)</li>
+                    <li><a href="https://www.anthropic.com/engineering/claude-code-best-practices">Claude Code Best Practices</a></li>
+                </ul>
+
+                <h3>Community Resources</h3>
+                <ul>
+                    <li><a href="https://github.com/travisvn/awesome-claude-skills">Awesome Claude Skills</a> - Curated list of skills and resources</li>
+                    <li><a href="https://github.com/hesreallyhim/awesome-claude-code">Awesome Claude Code</a> - Commands, files, and workflows</li>
+                    <li><a href="https://github.com/anthropics/skills">anthropics/skills</a> - Official skills repository</li>
+                    <li><a href="https://github.com/obra/superpowers">obra/superpowers</a> - Battle-tested community skills</li>
+                </ul>
+
+                <h3>Tutorials & Guides</h3>
+                <ul>
+                    <li><a href="https://simonwillison.net/2025/Oct/16/claude-skills/">Claude Skills are awesome, maybe a bigger deal than MCP</a> (Simon Willison)</li>
+                    <li><a href="https://www.cursor-ide.com/blog/claude-code-skills">Claude Code Skills Complete Guide for Developers</a></li>
+                    <li><a href="https://www.siddharthbharath.com/claude-code-the-complete-guide/">Cooking with Claude Code: The Complete Guide</a></li>
+                    <li><a href="https://medium.com/@dan.avila7/claude-code-from-zero-to-hero-bebe2436ac32">Claude Code: From Zero to Hero</a></li>
+                    <li><a href="https://harper.blog/2025/05/08/basic-claude-code/">Basic Claude Code</a> (Harper Reed)</li>
+                </ul>
+
+                <h3>Comparison Analyses</h3>
+                <ul>
+                    <li><a href="https://binaryverseai.com/claude-skills-guide-use-cases-api-examples-setup/">Claude Skills: Proven 2025 Guide</a></li>
+                    <li><a href="https://www.cometapi.com/how-to-create-and-use-claudes-skills/">How to Create and Use Claude Skills</a></li>
+                    <li><a href="https://pub.towardsai.net/claude-skills-better-than-mcp-f20a8d1280f2">Claude Skills: Better Than MCP?</a></li>
+                </ul>
+
+                <h3>Technical Deep Dives</h3>
+                <ul>
+                    <li><a href="https://skywork.ai/blog/ai-agent/claude-skills-skill-md-resources-runtime-loading/">What Is SKILL.md in Claude Skills?</a></li>
+                    <li><a href="https://skywork.ai/blog/ai-agent/claude-skills-explained-where-they-run/">Claude Skills Explained: Where They Run and How They Work</a></li>
+                    <li><a href="https://skywork.ai/blog/how-to-use-skills-in-claude-code-install-path-project-scoping-testing/">How to Use Skills in Claude Code</a></li>
+                    <li><a href="https://limitededitionjonathan.substack.com/p/the-definitive-guide-to-claude-skills">The Definitive Guide to Claude SKILLS</a></li>
+                </ul>
+
+                <h3>CLAUDE.md Resources</h3>
+                <ul>
+                    <li><a href="https://apidog.com/blog/claude-md/">What's a Claude.md File? 5 Best Practices</a></li>
+                    <li><a href="https://claudelog.com/faqs/what-is-claude-md/">What is CLAUDE.md in Claude Code</a></li>
+                    <li><a href="https://clune.org/posts/claude-code-manual/">Claude Code - The Missing Manual</a></li>
+                    <li><a href="https://www.builder.io/blog/claude-code">How I use Claude Code</a></li>
+                </ul>
+
+                <h3>API References</h3>
+                <ul>
+                    <li><a href="https://docs.claude.com/en/api/skill-management">Skill Management API Reference</a></li>
+                    <li><a href="https://docs.claude.com/en/docs/build-with-claude/agent-sdk">Claude Agent SDK</a></li>
+                </ul>
+
+                <h3>Example Repositories</h3>
+                <ul>
+                    <li><a href="https://github.com/anthropics/skills">anthropics/skills</a> - Official examples</li>
+                    <li><a href="https://github.com/obra/superpowers">obra/superpowers</a> - Community skills library</li>
+                    <li><a href="https://github.com/obra/superpowers-lab">obra/superpowers-lab</a> - Experimental skills</li>
+                </ul>
+
+                <h3>Quick Reference Cards</h3>
+
+                <div class="card">
+                    <div class="card-title">Key Terminology</div>
+                    <ul>
+                        <li><strong>Skill:</strong> Packaged capability with instructions and optional code</li>
+                        <li><strong>SKILL.md:</strong> Entry point file with YAML frontmatter + instructions</li>
+                        <li><strong>CLAUDE.md:</strong> Project configuration file (Claude Code only)</li>
+                        <li><strong>Progressive Disclosure:</strong> Two-phase loading (metadata → full content)</li>
+                        <li><strong>Model-Invoked:</strong> Claude decides when to use skills autonomously</li>
+                        <li><strong>Container:</strong> Sandboxed execution environment for skills</li>
+                        <li><strong>Composability:</strong> Multiple skills working together automatically</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Common Commands</div>
+                    <pre><code># Claude Code
+claude                     # Start session
+/init                      # Generate CLAUDE.md
+/clear                     # Clear context
+/compact                   # Compress context
+/help                      # Show commands
+
+# Plugin management
+/plugin marketplace add anthropics/skills
+/plugin list
+/plugin remove
+
+# Git commands (Claude Code understands)
+git status
+git commit -m "message"
+git push</code></pre>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Document compiled: October 30, 2025</p>
+            <p>Based on official Anthropic documentation and community resources</p>
+            <p class="text-tertiary">This guide is maintained independently and may contain interpretations beyond official documentation. Always refer to <a href="https://docs.claude.com">docs.claude.com</a> for authoritative information.</p>
+        </footer>
+    </div>
+</body>
+</html>
