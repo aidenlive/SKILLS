@@ -1,0 +1,599 @@
+/**
+ * Layout Patterns
+ * Mobile-first layout components
+ * No flex-wrap - predictable horizontal scrolling
+ */
+
+/* ============================================
+   STACK LAYOUT (Vertical Spacing)
+   ============================================ */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Lobotomized Owl Selector for consistent spacing */
+.stack > * + * {
+  margin-top: var(--space-4);
+}
+
+/* Stack Spacing Variants */
+.stack-xs > * + * { margin-top: var(--space-1); }
+.stack-sm > * + * { margin-top: var(--space-2); }
+.stack-md > * + * { margin-top: var(--space-4); }
+.stack-lg > * + * { margin-top: var(--space-6); }
+.stack-xl > * + * { margin-top: var(--space-8); }
+
+/* Responsive Stack Spacing */
+@media (min-width: 1024px) {
+  .stack-md-lg > * + * { margin-top: var(--space-6); }
+  .stack-md-xl > * + * { margin-top: var(--space-8); }
+}
+
+/* ============================================
+   CLUSTER LAYOUT (Horizontal Grouping)
+   ============================================ */
+
+.cluster {
+  display: flex;
+  flex-wrap: nowrap; /* NO WRAP - scroll instead */
+  gap: var(--space-2);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+/* Prevent items from shrinking */
+.cluster > * {
+  flex-shrink: 0;
+}
+
+/* Cluster Gap Variants */
+.cluster-xs { gap: var(--space-1); }
+.cluster-sm { gap: var(--space-2); }
+.cluster-md { gap: var(--space-3); }
+.cluster-lg { gap: var(--space-4); }
+.cluster-xl { gap: var(--space-6); }
+
+/* Hide scrollbar on desktop if desired */
+@media (min-width: 1024px) {
+  .cluster-no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .cluster-no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Cluster Alignment */
+.cluster-start { justify-content: flex-start; }
+.cluster-center { justify-content: center; }
+.cluster-end { justify-content: flex-end; }
+.cluster-between { justify-content: space-between; }
+
+.cluster-items-start { align-items: flex-start; }
+.cluster-items-center { align-items: center; }
+.cluster-items-end { align-items: flex-end; }
+
+/* ============================================
+   SIDEBAR LAYOUT
+   ============================================ */
+
+.sidebar-layout {
+  display: grid;
+  gap: var(--space-6);
+}
+
+/* Mobile: Stack */
+.sidebar-layout {
+  grid-template-columns: 1fr;
+}
+
+/* Desktop: Sidebar + Content */
+@media (min-width: 1024px) {
+  .sidebar-layout {
+    grid-template-columns: 250px 1fr;
+  }
+
+  .sidebar-layout.sidebar-right {
+    grid-template-columns: 1fr 250px;
+  }
+
+  .sidebar-layout.sidebar-wide {
+    grid-template-columns: 320px 1fr;
+  }
+
+  .sidebar-layout.sidebar-narrow {
+    grid-template-columns: 180px 1fr;
+  }
+}
+
+/* ============================================
+   SWITCHER LAYOUT
+   ============================================ */
+
+/* Switches between horizontal and vertical at breakpoint */
+.switcher {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .switcher {
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  .switcher > * {
+    flex: 1;
+    flex-shrink: 0;
+    min-width: 0; /* Allow text truncation */
+  }
+}
+
+/* ============================================
+   CENTER LAYOUT
+   ============================================ */
+
+.center {
+  box-sizing: content-box;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--measure, 65ch);
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .center {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+
+/* ============================================
+   COVER LAYOUT (Full Height)
+   ============================================ */
+
+.cover {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: var(--space-4);
+}
+
+.cover > * {
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+/* Centered element takes available space */
+.cover > :first-child:not(.cover-centered) {
+  margin-top: 0;
+}
+
+.cover > :last-child:not(.cover-centered) {
+  margin-bottom: 0;
+}
+
+.cover > .cover-centered {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+/* ============================================
+   REEL LAYOUT (Horizontal Scroll)
+   ============================================ */
+
+.reel {
+  display: flex;
+  flex-wrap: nowrap; /* NO WRAP */
+  gap: var(--space-4);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  padding-bottom: var(--space-2);
+}
+
+.reel > * {
+  flex: 0 0 auto;
+  width: var(--item-width, 280px);
+}
+
+/* Reel with different item widths */
+.reel-sm > * { width: 200px; }
+.reel-md > * { width: 280px; }
+.reel-lg > * { width: 360px; }
+.reel-xl > * { width: 480px; }
+
+/* Smooth scrolling */
+.reel-smooth {
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+}
+
+.reel-smooth > * {
+  scroll-snap-align: start;
+}
+
+/* Scroll padding for snap points */
+.reel-smooth {
+  scroll-padding: var(--space-4);
+}
+
+/* Custom scrollbar styling */
+.reel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.reel::-webkit-scrollbar-track {
+  background: oklch(92% 0 0);
+  border-radius: 4px;
+}
+
+.reel::-webkit-scrollbar-thumb {
+  background: oklch(70% 0 0);
+  border-radius: 4px;
+}
+
+.reel::-webkit-scrollbar-thumb:hover {
+  background: oklch(50% 0 0);
+}
+
+/* ============================================
+   FRAME LAYOUT (Aspect Ratio)
+   ============================================ */
+
+.frame {
+  aspect-ratio: var(--aspect-ratio, 16/9);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.frame > * {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Frame Ratios */
+.frame-square { aspect-ratio: 1/1; }
+.frame-video { aspect-ratio: 16/9; }
+.frame-cinema { aspect-ratio: 21/9; }
+.frame-portrait { aspect-ratio: 3/4; }
+.frame-golden { aspect-ratio: 1.618/1; }
+
+/* ============================================
+   MASONRY LAYOUT
+   ============================================ */
+
+.masonry {
+  column-count: 1;
+  column-gap: var(--space-4);
+}
+
+.masonry > * {
+  break-inside: avoid;
+  margin-bottom: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .masonry { column-count: 2; }
+}
+
+@media (min-width: 1024px) {
+  .masonry { column-count: 3; }
+}
+
+.masonry-2 { column-count: 2; }
+.masonry-3 { column-count: 3; }
+.masonry-4 { column-count: 4; }
+
+/* ============================================
+   SPLIT LAYOUT (50/50)
+   ============================================ */
+
+.split {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .split {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .split.split-3070 {
+    grid-template-columns: 3fr 7fr;
+  }
+
+  .split.split-7030 {
+    grid-template-columns: 7fr 3fr;
+  }
+
+  .split.split-4060 {
+    grid-template-columns: 4fr 6fr;
+  }
+
+  .split.split-6040 {
+    grid-template-columns: 6fr 4fr;
+  }
+}
+
+/* ============================================
+   CARD GRID LAYOUT
+   ============================================ */
+
+.card-grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1440px) {
+  .card-grid.card-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ============================================
+   OVERFLOW HANDLING
+   ============================================ */
+
+/* Horizontal Scroll Container */
+.scroll-x {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+/* Scroll Shadows (indicate more content) */
+.scroll-shadows {
+  background:
+    linear-gradient(90deg, white 30%, rgba(255,255,255,0)) left,
+    linear-gradient(90deg, rgba(255,255,255,0), white 70%) right;
+  background-repeat: no-repeat;
+  background-size: 40px 100%, 40px 100%;
+  background-attachment: local, local;
+}
+
+/* ============================================
+   TEXT TRUNCATION
+   ============================================ */
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+
+/* ============================================
+   NAVIGATION PATTERNS
+   ============================================ */
+
+/* Mobile: Horizontal scroll navigation */
+.nav-scroll {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  padding: var(--space-4);
+  border-bottom: 1px solid oklch(92% 0 0);
+}
+
+.nav-scroll > * {
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding: var(--space-2) var(--space-4);
+}
+
+/* Desktop: Full width navigation */
+@media (min-width: 1024px) {
+  .nav-scroll {
+    overflow-x: visible;
+    justify-content: space-between;
+  }
+}
+
+/* ============================================
+   TABLE PATTERNS
+   ============================================ */
+
+/* Mobile: Horizontal scroll table */
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid oklch(92% 0 0);
+  border-radius: 8px;
+}
+
+.table-responsive {
+  min-width: 600px;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .table-responsive {
+    min-width: 0;
+  }
+}
+
+/* ============================================
+   FORM LAYOUTS
+   ============================================ */
+
+/* Stack form on mobile, grid on desktop */
+.form-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .form-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+
+  .form-layout .form-full {
+    grid-column: span 2;
+  }
+}
+
+/* ============================================
+   STICKY ELEMENTS
+   ============================================ */
+
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.sticky-bottom {
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+}
+
+/* Sticky sidebar */
+.sidebar-sticky {
+  position: sticky;
+  top: var(--space-4);
+  align-self: flex-start;
+}
+
+/* ============================================
+   UTILITY PATTERNS
+   ============================================ */
+
+/* Spacer (pushes elements apart) */
+.spacer {
+  flex: 1;
+}
+
+/* Divider */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: oklch(92% 0 0);
+  margin: var(--space-4) 0;
+}
+
+/* Section */
+.section {
+  padding: var(--space-8) 0;
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: var(--space-16) 0;
+  }
+}
+
+/* ============================================
+   RESPONSIVE DISPLAY
+   ============================================ */
+
+/* Hide/Show at breakpoints */
+.mobile-only {
+  display: block;
+}
+
+@media (min-width: 640px) {
+  .mobile-only {
+    display: none;
+  }
+}
+
+.desktop-only {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .desktop-only {
+    display: block;
+  }
+}
+
+/* ============================================
+   SAFE AREAS (for mobile notches)
+   ============================================ */
+
+.safe-area {
+  padding-left: max(var(--space-4), env(safe-area-inset-left));
+  padding-right: max(var(--space-4), env(safe-area-inset-right));
+  padding-top: max(var(--space-4), env(safe-area-inset-top));
+  padding-bottom: max(var(--space-4), env(safe-area-inset-bottom));
+}
+
+/* ============================================
+   PRINT LAYOUTS
+   ============================================ */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .page-break-before {
+    page-break-before: always;
+  }
+
+  .page-break-after {
+    page-break-after: always;
+  }
+
+  .page-break-inside-avoid {
+    page-break-inside: avoid;
+  }
+}
