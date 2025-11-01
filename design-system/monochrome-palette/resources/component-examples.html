@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monochrome Components - Interactive Examples</title>
+  <link rel="stylesheet" href="monochrome-components.css">
+  <link rel="stylesheet" href="grayscale-utilities.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--gray-2);
+      color: var(--gray-80);
+      padding: var(--space-8);
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section {
+      margin-bottom: var(--space-8);
+      padding: var(--space-6);
+      background: var(--gray-4);
+      border: 1px solid var(--gray-12);
+      border-radius: 8px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: var(--space-4);
+      color: var(--gray-80);
+    }
+
+    .section-description {
+      font-size: 15px;
+      color: var(--gray-55);
+      margin-bottom: var(--space-6);
+    }
+
+    .example-group {
+      margin-bottom: var(--space-6);
+    }
+
+    .example-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: var(--space-3);
+      color: var(--gray-80);
+    }
+
+    .example-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      padding: var(--space-4);
+      background: var(--gray-2);
+      border: 1px solid var(--gray-12);
+      border-radius: 6px;
+    }
+
+    .code-block {
+      background: var(--gray-6);
+      border: 1px solid var(--gray-16);
+      border-radius: 6px;
+      padding: var(--space-4);
+      margin-top: var(--space-3);
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 13px;
+      overflow-x: auto;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-4);
+    }
+
+    header {
+      margin-bottom: var(--space-8);
+      padding: var(--space-6);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: var(--space-2);
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: var(--gray-55);
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: var(--space-4);
+      right: var(--space-4);
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle btn-secondary" onclick="toggleTheme()">
+    Toggle Theme
+  </button>
+
+  <div class="container">
+    <header>
+      <h1>Monochrome Components</h1>
+      <p class="subtitle">Interactive examples of grayscale-first design</p>
+    </header>
+
+    <!-- Buttons Section -->
+    <section class="section">
+      <h2 class="section-title">Buttons</h2>
+      <p class="section-description">
+        Primary, secondary, and ghost button styles with hover and disabled states.
+      </p>
+
+      <div class="example-group">
+        <h3 class="example-title">Button Variants</h3>
+        <div class="example-content">
+          <button class="btn btn-primary">Primary Button</button>
+          <button class="btn btn-secondary">Secondary Button</button>
+          <button class="btn btn-ghost">Ghost Button</button>
+          <button class="btn btn-primary" disabled>Disabled Button</button>
+        </div>
+      </div>
+
+      <div class="example-group">
+        <h3 class="example-title">Button Sizes</h3>
+        <div class="example-content">
+          <button class="btn btn-primary btn-sm">Small</button>
+          <button class="btn btn-primary">Default</button>
+          <button class="btn btn-primary btn-lg">Large</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards Section -->
+    <section class="section">
+      <h2 class="section-title">Cards</h2>
+      <p class="section-description">
+        Versatile card components with titles, descriptions, and optional footers.
+      </p>
+
+      <div class="demo-grid">
+        <div class="card">
+          <h3 class="card-title">Default Card</h3>
+          <p class="card-description">
+            A simple card with a title and description. Hover to see the subtle border change.
+          </p>
+          <div class="card-footer">
+            <button class="btn btn-primary btn-sm">Action</button>
+            <button class="btn btn-ghost btn-sm">Cancel</button>
+          </div>
+        </div>
+
+        <div class="card card-elevated">
+          <h3 class="card-title">Elevated Card</h3>
+          <p class="card-description">
+            This card has more pronounced elevation with a stronger shadow effect.
+          </p>
+          <div class="card-footer">
+            <span class="badge badge-default">Featured</span>
+          </div>
+        </div>
+
+        <div class="card card-interactive">
+          <h3 class="card-title">Interactive Card</h3>
+          <p class="card-description">
+            Click this card. It lifts on hover to indicate interactivity.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form Inputs Section -->
+    <section class="section">
+      <h2 class="section-title">Form Inputs</h2>
+      <p class="section-description">
+        Clean, accessible form elements with proper focus states.
+      </p>
+
+      <div class="example-group">
+        <label class="label">
+          Email Address
+          <span class="label-optional">(optional)</span>
+        </label>
+        <input type="email" class="input" placeholder="Enter your email">
+        <p class="helper-text">We'll never share your email with anyone else.</p>
+      </div>
+
+      <div class="example-group">
+        <label class="label">Password</label>
+        <input type="password" class="input" placeholder="Enter password">
+      </div>
+
+      <div class="example-group">
+        <label class="label">Message</label>
+        <textarea class="input textarea" placeholder="Write your message..."></textarea>
+      </div>
+
+      <div class="example-group">
+        <label class="label">Invalid Input</label>
+        <input type="text" class="input error" value="Invalid value">
+        <p class="helper-text error-text">This field contains an error.</p>
+      </div>
+    </section>
+
+    <!-- Badges & Tags Section -->
+    <section class="section">
+      <h2 class="section-title">Badges & Tags</h2>
+      <p class="section-description">
+        Status indicators and labels with minimal color usage.
+      </p>
+
+      <div class="example-group">
+        <h3 class="example-title">Badge Variants</h3>
+        <div class="example-content">
+          <span class="badge badge-default">Default</span>
+          <span class="badge badge-subtle">Subtle</span>
+          <span class="badge badge-bold">Bold</span>
+        </div>
+      </div>
+
+      <div class="example-group">
+        <h3 class="example-title">Status Badges (with minimal color)</h3>
+        <div class="example-content">
+          <span class="badge badge-success">Success</span>
+          <span class="badge badge-error">Error</span>
+          <span class="badge badge-warning">Warning</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alerts Section -->
+    <section class="section">
+      <h2 class="section-title">Alerts & Messages</h2>
+      <p class="section-description">
+        Notification banners with appropriate visual hierarchy.
+      </p>
+
+      <div class="example-group">
+        <div class="alert alert-default">
+          <div>
+            <h4 class="alert-title">Information</h4>
+            <p class="alert-message">This is a general information alert message.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="example-group">
+        <div class="alert alert-success">
+          <div>
+            <h4 class="alert-title">Success</h4>
+            <p class="alert-message">Your changes have been saved successfully.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="example-group">
+        <div class="alert alert-error">
+          <div>
+            <h4 class="alert-title">Error</h4>
+            <p class="alert-message">There was a problem processing your request.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="example-group">
+        <div class="alert alert-warning">
+          <div>
+            <h4 class="alert-title">Warning</h4>
+            <p class="alert-message">Please review your information before proceeding.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dividers Section -->
+    <section class="section">
+      <h2 class="section-title">Dividers</h2>
+      <p class="section-description">
+        Subtle separators for content sections.
+      </p>
+
+      <div class="example-group">
+        <p>Content above divider</p>
+        <hr class="divider">
+        <p>Content below divider</p>
+      </div>
+
+      <div class="example-group">
+        <p>Content above</p>
+        <div class="divider-text">Or</div>
+        <p>Content below</p>
+      </div>
+    </section>
+
+    <!-- Lists Section -->
+    <section class="section">
+      <h2 class="section-title">Lists</h2>
+      <p class="section-description">
+        Clean list items with hover states.
+      </p>
+
+      <ul class="list">
+        <li class="list-item list-item-interactive">
+          <div class="list-item-title">First Item</div>
+          <div class="list-item-description">Description for the first item</div>
+        </li>
+        <li class="list-item list-item-interactive">
+          <div class="list-item-title">Second Item</div>
+          <div class="list-item-description">Description for the second item</div>
+        </li>
+        <li class="list-item list-item-interactive">
+          <div class="list-item-title">Third Item</div>
+          <div class="list-item-description">Description for the third item</div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Loading States Section -->
+    <section class="section">
+      <h2 class="section-title">Loading States</h2>
+      <p class="section-description">
+        Skeleton loaders and spinners for async content.
+      </p>
+
+      <div class="example-group">
+        <h3 class="example-title">Skeleton Loaders</h3>
+        <div class="example-content" style="flex-direction: column; align-items: stretch;">
+          <div class="skeleton skeleton-title"></div>
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text" style="width: 80%;"></div>
+        </div>
+      </div>
+
+      <div class="example-group">
+        <h3 class="example-title">Spinner</h3>
+        <div class="example-content">
+          <div class="spinner"></div>
+          <button class="btn btn-primary" disabled>
+            <span class="spinner" style="border-top-color: var(--gray-0);"></span>
+            Loading...
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Typography Section -->
+    <section class="section">
+      <h2 class="section-title">Typography Hierarchy</h2>
+      <p class="section-description">
+        Clear text hierarchy through size, weight, and grayscale values.
+      </p>
+
+      <div class="example-group">
+        <h1 style="font-size: 32px; font-weight: 700; margin-bottom: var(--space-2);">
+          Heading 1 - Primary
+        </h1>
+        <h2 style="font-size: 24px; font-weight: 600; margin-bottom: var(--space-2);">
+          Heading 2 - Secondary
+        </h2>
+        <h3 style="font-size: 18px; font-weight: 600; margin-bottom: var(--space-2);">
+          Heading 3 - Tertiary
+        </h3>
+        <p class="text-primary" style="margin-bottom: var(--space-2);">
+          Body text (primary) - Main content should use this color for optimal readability.
+        </p>
+        <p class="text-secondary" style="margin-bottom: var(--space-2);">
+          Body text (secondary) - Use for supporting information and descriptions.
+        </p>
+        <p class="text-tertiary">
+          Body text (tertiary) - Use for metadata, captions, and less important content.
+        </p>
+      </div>
+    </section>
+
+    <!-- Utility Classes Section -->
+    <section class="section">
+      <h2 class="section-title">Utility Classes</h2>
+      <p class="section-description">
+        Quick styling with utility classes.
+      </p>
+
+      <div class="example-group">
+        <h3 class="example-title">Shadows</h3>
+        <div class="example-content">
+          <div class="shadow-sm" style="padding: var(--space-4); background: var(--gray-4); width: 120px; text-align: center;">
+            shadow-sm
+          </div>
+          <div class="shadow-md" style="padding: var(--space-4); background: var(--gray-4); width: 120px; text-align: center;">
+            shadow-md
+          </div>
+          <div class="shadow-lg" style="padding: var(--space-4); background: var(--gray-4); width: 120px; text-align: center;">
+            shadow-lg
+          </div>
+        </div>
+      </div>
+
+      <div class="example-group">
+        <h3 class="example-title">Border Radius</h3>
+        <div class="example-content">
+          <div class="rounded-sm" style="padding: var(--space-3); background: var(--gray-80); color: var(--gray-0);">
+            rounded-sm
+          </div>
+          <div class="rounded" style="padding: var(--space-3); background: var(--gray-80); color: var(--gray-0);">
+            rounded
+          </div>
+          <div class="rounded-lg" style="padding: var(--space-3); background: var(--gray-80); color: var(--gray-0);">
+            rounded-lg
+          </div>
+          <div class="rounded-full" style="padding: var(--space-3); background: var(--gray-80); color: var(--gray-0);">
+            rounded-full
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Theme switcher
+    function toggleTheme() {
+      const root = document.documentElement;
+      const currentTheme = root.style.colorScheme || 'light';
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      root.style.colorScheme = newTheme;
+
+      // For demonstration purposes, manually toggle dark theme
+      if (newTheme === 'dark') {
+        root.style.setProperty('--gray-2', 'oklch(15% 0 0)');
+        root.style.setProperty('--gray-4', 'oklch(18% 0 0)');
+        root.style.setProperty('--gray-6', 'oklch(22% 0 0)');
+        root.style.setProperty('--gray-12', 'oklch(24% 0 0)');
+        root.style.setProperty('--gray-16', 'oklch(28% 0 0)');
+        root.style.setProperty('--gray-24', 'oklch(40% 0 0)');
+        root.style.setProperty('--gray-40', 'oklch(55% 0 0)');
+        root.style.setProperty('--gray-55', 'oklch(70% 0 0)');
+        root.style.setProperty('--gray-80', 'oklch(95% 0 0)');
+      } else {
+        root.style.setProperty('--gray-2', 'oklch(98% 0 0)');
+        root.style.setProperty('--gray-4', 'oklch(96% 0 0)');
+        root.style.setProperty('--gray-6', 'oklch(94% 0 0)');
+        root.style.setProperty('--gray-12', 'oklch(92% 0 0)');
+        root.style.setProperty('--gray-16', 'oklch(88% 0 0)');
+        root.style.setProperty('--gray-24', 'oklch(80% 0 0)');
+        root.style.setProperty('--gray-40', 'oklch(60% 0 0)');
+        root.style.setProperty('--gray-55', 'oklch(45% 0 0)');
+        root.style.setProperty('--gray-80', 'oklch(20% 0 0)');
+      }
+    }
+
+    // Add interactive demo for cards
+    document.querySelectorAll('.card-interactive').forEach(card => {
+      card.addEventListener('click', () => {
+        alert('Interactive card clicked!');
+      });
+    });
+  </script>
+</body>
+</html>
