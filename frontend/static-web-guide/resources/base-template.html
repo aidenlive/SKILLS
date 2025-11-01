@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Static website built with semantic HTML, OKLCH tokens, and zero build tooling">
+  <meta name="keywords" content="static, html, css, javascript">
+  <meta name="author" content="Your Name">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yoursite.com/">
+  <meta property="og:title" content="Your Site Title">
+  <meta property="og:description" content="Your site description">
+  <meta property="og:image" content="https://yoursite.com/assets/og-image.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://yoursite.com/">
+  <meta name="twitter:title" content="Your Site Title">
+  <meta name="twitter:description" content="Your site description">
+  <meta name="twitter:image" content="https://yoursite.com/assets/twitter-image.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+
+  <!-- Fonts: Inter (UI) + JetBrains Mono (code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Phosphor Icons CDN -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <!-- Critical CSS (tokens loaded first) -->
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/layout.css">
+  <link rel="stylesheet" href="/styles/components.css">
+  <link rel="stylesheet" href="/styles/utilities.css">
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Your Site Name",
+    "url": "https://yoursite.com",
+    "description": "Your site description"
+  }
+  </script>
+
+  <title>Page Title | Your Site Name</title>
+</head>
+<body>
+  <!-- Skip to main content (accessibility) -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav-primary" role="navigation" aria-label="Main navigation">
+        <div class="nav-brand">
+          <a href="/" aria-label="Home">
+            <i class="ph ph-house" aria-hidden="true"></i>
+            <span>Site Name</span>
+          </a>
+        </div>
+
+        <!-- Navigation: Horizontal scroll on mobile, no wrap -->
+        <ul class="nav-links cluster" role="list">
+          <li><a href="/" aria-current="page">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/products">Products</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+
+        <!-- Mobile menu toggle (optional) -->
+        <button
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Toggle navigation menu">
+          <i class="ph ph-list" aria-hidden="true"></i>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content" tabindex="-1">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Welcome to Our Site</h1>
+          <p class="lead">
+            Build fast, accessible, and beautiful static websites with zero build tooling.
+          </p>
+          <div class="hero-actions cluster">
+            <a href="/get-started" class="btn btn-primary">
+              Get Started
+              <i class="ph ph-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a href="/docs" class="btn btn-secondary">
+              View Documentation
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Features</h2>
+        <p class="section-description">
+          Everything you need for modern web development, no build tools required.
+        </p>
+
+        <div class="card-grid">
+          <!-- Feature Card 1 -->
+          <article class="card">
+            <div class="card-icon">
+              <i class="ph ph-rocket-launch" aria-hidden="true"></i>
+            </div>
+            <h3 class="card-title">Zero Build Step</h3>
+            <p class="card-description">
+              Pure HTML, CSS, and JavaScript. No compilation, no bundling, no complexity.
+            </p>
+            <a href="#learn-more" class="card-link">
+              Learn more
+              <i class="ph ph-arrow-right" aria-hidden="true"></i>
+            </a>
+          </article>
+
+          <!-- Feature Card 2 -->
+          <article class="card">
+            <div class="card-icon">
+              <i class="ph ph-palette" aria-hidden="true"></i>
+            </div>
+            <h3 class="card-title">OKLCH Tokens</h3>
+            <p class="card-description">
+              Modern color system with perceptually uniform colors and automatic dark mode.
+            </p>
+            <a href="#learn-more" class="card-link">
+              Learn more
+              <i class="ph ph-arrow-right" aria-hidden="true"></i>
+            </a>
+          </article>
+
+          <!-- Feature Card 3 -->
+          <article class="card">
+            <div class="card-icon">
+              <i class="ph ph-accessibility" aria-hidden="true"></i>
+            </div>
+            <h3 class="card-title">Accessible</h3>
+            <p class="card-description">
+              Semantic HTML, ARIA labels, keyboard navigation, and WCAG compliant.
+            </p>
+            <a href="#learn-more" class="card-link">
+              Learn more
+              <i class="ph ph-arrow-right" aria-hidden="true"></i>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content Section with Sidebar -->
+    <section class="section">
+      <div class="container">
+        <div class="sidebar-layout">
+          <!-- Main Content -->
+          <article class="content-main stack-lg">
+            <h2>Main Article</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+            <p>
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+              ut aliquip ex ea commodo consequat.
+            </p>
+
+            <!-- Image with proper attributes -->
+            <figure>
+              <img
+                src="/assets/images/example.jpg"
+                alt="Descriptive alt text"
+                width="800"
+                height="450"
+                loading="lazy">
+              <figcaption>Image caption describing the content</figcaption>
+            </figure>
+          </article>
+
+          <!-- Sidebar -->
+          <aside class="sidebar" aria-label="Sidebar">
+            <div class="card">
+              <h3>Related Links</h3>
+              <ul class="link-list" role="list">
+                <li><a href="#link1">Related Article 1</a></li>
+                <li><a href="#link2">Related Article 2</a></li>
+                <li><a href="#link3">Related Article 3</a></li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3>Newsletter</h3>
+              <form class="newsletter-form">
+                <label for="email-input" class="sr-only">Email address</label>
+                <input
+                  type="email"
+                  id="email-input"
+                  class="input"
+                  placeholder="your@email.com"
+                  required
+                  aria-required="true">
+                <button type="submit" class="btn btn-primary">
+                  Subscribe
+                </button>
+              </form>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="section section-cta">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Ready to Get Started?</h2>
+          <p>
+            Join thousands of developers building with modern static web technology.
+          </p>
+          <div class="cluster">
+            <a href="/signup" class="btn btn-primary btn-lg">
+              Sign Up Free
+            </a>
+            <a href="/contact" class="btn btn-ghost btn-lg">
+              Contact Sales
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Company Info -->
+        <div class="footer-col">
+          <h3>Company</h3>
+          <ul role="list">
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/team">Team</a></li>
+            <li><a href="/careers">Careers</a></li>
+            <li><a href="/press">Press</a></li>
+          </ul>
+        </div>
+
+        <!-- Product Info -->
+        <div class="footer-col">
+          <h3>Product</h3>
+          <ul role="list">
+            <li><a href="/features">Features</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="/docs">Documentation</a></li>
+            <li><a href="/updates">Updates</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div class="footer-col">
+          <h3>Support</h3>
+          <ul role="list">
+            <li><a href="/help">Help Center</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/status">Status</a></li>
+          </ul>
+        </div>
+
+        <!-- Social -->
+        <div class="footer-col">
+          <h3>Connect</h3>
+          <ul class="social-links cluster" role="list">
+            <li>
+              <a href="https://twitter.com" aria-label="Twitter">
+                <i class="ph ph-twitter-logo" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com" aria-label="GitHub">
+                <i class="ph ph-github-logo" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://linkedin.com" aria-label="LinkedIn">
+                <i class="ph ph-linkedin-logo" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>&copy; 2025 Your Company. All rights reserved.</p>
+        <ul class="footer-legal cluster" role="list">
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/cookies">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript Modules -->
+  <script type="module" src="/scripts/app.js"></script>
+  <script type="module" src="/scripts/ui-helpers.js"></script>
+
+  <!-- Theme Switcher (optional) -->
+  <script type="module">
+    // Simple theme toggle
+    const themeToggle = document.querySelector('.theme-toggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark-mode');
+        const isDark = document.documentElement.classList.contains('dark-mode');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      });
+
+      // Load saved theme
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+      }
+    }
+  </script>
+</body>
+</html>
