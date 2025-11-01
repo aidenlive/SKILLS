@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OKLCH Contrast Calculator - WCAG Compliance Checker</title>
+  <style>
+    :root {
+      --color-bg: oklch(98% 0 0);
+      --color-surface: oklch(96% 0 0);
+      --color-border: oklch(88% 0 0);
+      --color-text-primary: oklch(20% 0 0);
+      --color-text-secondary: oklch(45% 0 0);
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+      padding: var(--space-8);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: var(--space-4);
+    }
+
+    p {
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-8);
+    }
+
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-6);
+      margin-bottom: var(--space-6);
+    }
+
+    .input-group {
+      margin-bottom: var(--space-4);
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: var(--color-text-primary);
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      font-size: 16px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    input:focus {
+      outline: 2px solid var(--color-text-primary);
+      outline-offset: 2px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+    }
+
+    .result {
+      padding: var(--space-6);
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .result-large {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .result-label {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+    }
+
+    .preview {
+      margin-top: var(--space-6);
+      padding: var(--space-6);
+      border-radius: 8px;
+      border: 1px solid var(--color-border);
+    }
+
+    .preview-text {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .preview-small {
+      font-size: 14px;
+    }
+
+    .status {
+      padding: var(--space-4);
+      border-radius: 4px;
+      margin-top: var(--space-4);
+      font-weight: 500;
+    }
+
+    .status-pass {
+      background: oklch(95% 0.03 145);
+      color: oklch(30% 0.12 145);
+      border: 1px solid oklch(80% 0.10 145);
+    }
+
+    .status-fail {
+      background: oklch(95% 0.03 25);
+      color: oklch(35% 0.15 25);
+      border: 1px solid oklch(80% 0.10 25);
+    }
+
+    .wcag-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: var(--space-4);
+    }
+
+    .wcag-table th,
+    .wcag-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .wcag-table th {
+      font-weight: 600;
+      background: oklch(94% 0 0);
+    }
+
+    .pass {
+      color: oklch(40% 0.12 145);
+      font-weight: 600;
+    }
+
+    .fail {
+      color: oklch(45% 0.15 25);
+      font-weight: 600;
+    }
+
+    @media (max-width: 640px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>OKLCH Contrast Calculator</h1>
+    <p>Check WCAG 2.1 color contrast compliance for OKLCH colors</p>
+
+    <div class="card">
+      <div class="grid">
+        <div class="input-group">
+          <label for="color1">Foreground OKLCH</label>
+          <input
+            type="text"
+            id="color1"
+            value="oklch(20% 0 0)"
+            placeholder="oklch(20% 0 0)"
+          >
+        </div>
+
+        <div class="input-group">
+          <label for="color2">Background OKLCH</label>
+          <input
+            type="text"
+            id="color2"
+            value="oklch(98% 0 0)"
+            placeholder="oklch(98% 0 0)"
+          >
+        </div>
+      </div>
+
+      <div class="result" id="result">
+        <div class="result-large" id="ratio">0:1</div>
+        <div class="result-label">Contrast Ratio</div>
+      </div>
+
+      <table class="wcag-table">
+        <thead>
+          <tr>
+            <th>WCAG Level</th>
+            <th>Normal Text</th>
+            <th>Large Text</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>AA (Minimum)</td>
+            <td id="aa-normal" class="fail">✗ Fail (4.5:1)</td>
+            <td id="aa-large" class="fail">✗ Fail (3:1)</td>
+          </tr>
+          <tr>
+            <td>AAA (Enhanced)</td>
+            <td id="aaa-normal" class="fail">✗ Fail (7:1)</td>
+            <td id="aaa-large" class="fail">✗ Fail (4.5:1)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="preview" id="preview">
+        <div class="preview-text">
+          The quick brown fox jumps over the lazy dog
+        </div>
+        <div class="preview-small">
+          This is how small text looks at 14px
+        </div>
+      </div>
+
+      <div id="status"></div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * Parse OKLCH color string to lightness value
+     */
+    function parseOKLCH(colorString) {
+      const match = colorString.match(/oklch\(([0-9.]+)%?\s+([0-9.]+)\s+([0-9.]+)\)/);
+      if (!match) return null;
+
+      return {
+        lightness: parseFloat(match[1]) / 100,
+        chroma: parseFloat(match[2]),
+        hue: parseFloat(match[3])
+      };
+    }
+
+    /**
+     * Calculate contrast ratio between two OKLCH colors
+     * Uses simplified luminance calculation based on lightness
+     */
+    function calculateContrast(color1, color2) {
+      const c1 = parseOKLCH(color1);
+      const c2 = parseOKLCH(color2);
+
+      if (!c1 || !c2) return 1;
+
+      const l1 = c1.lightness;
+      const l2 = c2.lightness;
+
+      const lighter = Math.max(l1, l2);
+      const darker = Math.min(l1, l2);
+
+      const ratio = (lighter + 0.05) / (darker + 0.05);
+      return ratio;
+    }
+
+    /**
+     * Update contrast calculation and UI
+     */
+    function updateContrast() {
+      const color1 = document.getElementById('color1').value;
+      const color2 = document.getElementById('color2').value;
+
+      const ratio = calculateContrast(color1, color2);
+
+      // Update ratio display
+      document.getElementById('ratio').textContent = ratio.toFixed(2) + ':1';
+
+      // Update WCAG compliance
+      const aaNormal = ratio >= 4.5;
+      const aaLarge = ratio >= 3;
+      const aaaNormal = ratio >= 7;
+      const aaaLarge = ratio >= 4.5;
+
+      document.getElementById('aa-normal').className = aaNormal ? 'pass' : 'fail';
+      document.getElementById('aa-normal').textContent = aaNormal ? '✓ Pass (4.5:1)' : '✗ Fail (4.5:1)';
+
+      document.getElementById('aa-large').className = aaLarge ? 'pass' : 'fail';
+      document.getElementById('aa-large').textContent = aaLarge ? '✓ Pass (3:1)' : '✗ Fail (3:1)';
+
+      document.getElementById('aaa-normal').className = aaaNormal ? 'pass' : 'fail';
+      document.getElementById('aaa-normal').textContent = aaaNormal ? '✓ Pass (7:1)' : '✗ Fail (7:1)';
+
+      document.getElementById('aaa-large').className = aaaLarge ? 'pass' : 'fail';
+      document.getElementById('aaa-large').textContent = aaaLarge ? '✓ Pass (4.5:1)' : '✗ Fail (4.5:1)';
+
+      // Update preview
+      const preview = document.getElementById('preview');
+      preview.style.backgroundColor = color2;
+      preview.style.color = color1;
+
+      // Update status message
+      const statusEl = document.getElementById('status');
+      if (aaNormal) {
+        statusEl.className = 'status status-pass';
+        statusEl.textContent = '✓ Meets WCAG AA for normal text';
+      } else if (aaLarge) {
+        statusEl.className = 'status status-pass';
+        statusEl.textContent = '✓ Meets WCAG AA for large text only';
+      } else {
+        statusEl.className = 'status status-fail';
+        statusEl.textContent = '✗ Does not meet WCAG AA requirements';
+      }
+
+      // Update result background
+      const resultEl = document.getElementById('result');
+      if (aaNormal) {
+        resultEl.style.backgroundColor = 'oklch(95% 0.03 145)';
+        resultEl.style.color = 'oklch(30% 0.12 145)';
+      } else {
+        resultEl.style.backgroundColor = 'oklch(95% 0.03 25)';
+        resultEl.style.color = 'oklch(35% 0.15 25)';
+      }
+    }
+
+    // Add event listeners
+    document.getElementById('color1').addEventListener('input', updateContrast);
+    document.getElementById('color2').addEventListener('input', updateContrast);
+
+    // Initial calculation
+    updateContrast();
+  </script>
+</body>
+</html>
